@@ -8,12 +8,34 @@ Page({
     chooseId:-1,
     color:'#000000',
     display:'none',
+    moban_id:'',
+    hot_list:'',
   },
   onLoad: function (options) {
-    console.log(options)
+    var moban_id=options.moban_id;
+    this.setData({
+      moban_id:moban_id,
+      clickId:moban_id
+    })
+    console.log(moban_id,this.data.clickId)
   },
   onShow: function () {
-
+    var that=this;
+    wx.request({
+      url: app.globalData.base_url + '/moban_list',
+      data: {
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          hot_list:res.data.remen
+        })
+      }
+    })
   },
   dianzi:function(e){
     var that = this;

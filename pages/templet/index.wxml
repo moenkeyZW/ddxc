@@ -23,27 +23,27 @@
     </view>
   </view>
   <view class='hotMuban shad'>
-    <view class='first' wx:for="{{muban_list}}" wx:key="{{index}}" data-index="{{index}}" >
+    <view class='first' wx:for="{{hot_list}}" wx:key="{{index}}" data-index="{{index}}" >
       <view class='tou'>
-        <image src='../../imgs/wzj.png' class='mbfm'></image>
+        <image src='https://www.qlgbp.cn/Public{{item.cover}}'  class='mbfm'></image>
         <view class='jz'>
           <image src='../../imgs/play.png' class='play'></image>
         </view>
       </view>
-      <block wx:if="{{index==clickId}}">
-        <view class='intro' data-index="{{index}}"  bindtap='chooseMuban'>
+      <block wx:if="{{index==clickId || clickId==item.id }}">
+        <view class='intro' data-id="{{item.id}}" data-index="{{index}}"  bindtap='chooseMuban'>
           <view>
-            <view class='biao' style='color:#FA7180'>感恩有你的心</view>
-            <view class='gm' style='color:#FABBC3'>匆匆那年，那年匆匆</view>
+            <view class='biao' style='color:#FA7180'>{{item.name}}</view>
+            <view class='gm' style='color:#FABBC3'>{{item.explain}}</view>
           </view>
           <view class='yuan' style='background:#FA7180'></view>
         </view>
       </block>
       <block wx:else >
-        <view class='intro' data-index="{{index}}" bindtap='chooseMuban'>
+        <view class='intro' data-id="{{item.id}}" data-index="{{index}}" bindtap='chooseMuban'>
           <view>
-            <view class='biao' style='color:#333'>感恩有你的心</view>
-            <view class='gm' style='color:#b3b3b3'>匆匆那年，那年匆匆</view>
+            <view class='biao' style='color:#333'>{{item.name}}</view>
+            <view class='gm' style='color:#b3b3b3'>{{item.explain}}</view>
           </view>
           <view class='yuan' style='background:#E0E0E0'></view>
         </view>
