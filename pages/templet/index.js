@@ -9,8 +9,8 @@ Page({
     color:'#000000',
     display:'none',
   },
-  onLoad: function () {
-
+  onLoad: function (options) {
+    console.log(options)
   },
   onShow: function () {
 
