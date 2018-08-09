@@ -32,7 +32,7 @@ Page({
       success: function (res) {
         console.log(res)
         that.setData({
-          hot_list:res.data.remen
+          hot_list:res.data.remen,
         })
       }
     })
@@ -55,15 +55,20 @@ Page({
     })
   },
   chooseMuban: function (e) {
+    console.log(e)
     var that = this;
     var id = e.currentTarget.dataset.index;
+    var moban_id = e.currentTarget.dataset.id;
     that.setData({
-      clickId: id
+      clickId: id,
+      moban_id:moban_id
     })
   },
   saveFile:function(){
+    var that=this;
+    var moban_id=that.data.moban_id;
     wx:wx.navigateTo({
-      url: '/pages/upPhotos/index',
+      url: '/pages/upPhotos/index?moban_id='+moban_id,
     })
   },
 })

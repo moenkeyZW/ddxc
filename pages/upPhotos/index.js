@@ -13,11 +13,14 @@ Page({
     upImg: [],
     muban_list:'',
     clickId:-1,
-    moban_id:0,
-    music_id:0,
     id:0,
     cover:'',
-    currently:'',//当前音乐和模板
+    currently: {//当前音乐和模板
+      moban_id:0,
+      music_id:0,
+      moban_name:'',
+      music_name:'',
+    },
   },
 
   /**
@@ -25,6 +28,7 @@ Page({
    */
   onLoad: function(options) {
     var that=this;
+    console.log(options);
     if(options.id>0){
       var id = options.id;
     }else{
@@ -33,6 +37,17 @@ Page({
     that.setData({
       id:id
     })
+    if(options.moban_id>0){
+      that.setData({
+        'currently.moban_id': options.moban_id,
+        clickId: options.moban_id
+      })
+    }
+    if (options.music_id > 0) {
+      that.setData({
+        'currently.music_id': options.music_id
+      })
+    }
     wx.request({
       url: app.globalData.base_url + '/upload_img_list',
       data: {
@@ -81,8 +96,8 @@ Page({
     const that = this
     const index = e.target.dataset.index
     var id=that.data.id;
-    var moban_id=that.data.moban_id;
-    var music_id=that.data.music_id;
+    var moban_id = that.data.currently.moban_id;
+    var music_id = that.data.currently.music_id;
     if (that.data.curIndex === index) return
     that.setData({
       curIndex: index,
@@ -106,6 +121,7 @@ Page({
             that.setData({
               muban_list:res.data.rm_moban,
               currently:res.data.list,
+              clickId: res.data.list.moban_id
             })
           }
         })
@@ -129,9 +145,14 @@ Page({
   },
   chooseMuban:function(e){
     var that=this;
+    console.log(e)
+    var moban_name = e.currentTarget.dataset.name;
+    var moban_id = e.currentTarget.dataset.id;
     var id = e.currentTarget.dataset.index;
     that.setData({
-      clickId: id
+      clickId: id,
+      'currently.moban_id': moban_id,
+      'currently.moban_name': moban_name
     })
   },
   choose: function() {
@@ -192,9 +213,8 @@ Page({
   uploadImg: function() {
     var that = this;
     var imgUrl = that.data.remakeImg.concat(that.data.upImg).join(',');
-    console.log(imgUrl);
-    var moban_id = that.data.moban_id;
-    var music_id = that.data.music_id;
+    var moban_id = that.data.currently.moban_id;
+    var music_id = that.data.currently.music_id;
     wx.request({
       url: app.globalData.base_url + '/make_album',
       data: {
