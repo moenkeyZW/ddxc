@@ -113,18 +113,18 @@ Page({
     })
   },
 
-  goMuban:function(e){
-    console.log(e)
+  goMuban:function(){
     var that=this;
     var moban_id = that.data.currently.moban_id;
-    console.log(moban_id)
-    // wx.navigateTo({
-    //   url: '/pages/templet/index?id='+moban_id,
-    // })
+    wx.navigateTo({
+      url: '/pages/templet/index?moban_id='+moban_id,
+    })
   },
   goMusic: function () {
+    var that = this;
+    var music_id = that.data.currently.music_id;
     wx.navigateTo({
-      url: '/pages/music/index',
+      url: '/pages/music/index?music_id='+music_id,
     })
   },
   chooseMuban:function(e){
