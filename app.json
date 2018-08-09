@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/album/index",
+    "pages/templet/index",
+    "pages/music/index",
+    "pages/upPhotos/index",
+    "pages/detail/index",
+    "pages/message/index",
+    "pages/publish/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "点点相册",
+    "navigationBarTextStyle": "#fff",
+    "backgroundColor": "#FCFAFA"
+  }
+}

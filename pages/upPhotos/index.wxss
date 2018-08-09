@@ -1,0 +1,255 @@
+/* pages/upPhotos/index.wxss */
+
+.tab {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  box-shadow: 0rpx 8rpx 12rpx rgba(77, 44, 38, 0.08);
+}
+
+.tab .tabBtn {
+  color: #333;
+  padding: 25rpx 0;
+  text-align: center;
+  width: 148rpx;
+  font-size: 32rpx;
+}
+
+.tab .tabBtn.choosed {
+  color: #fa7180;
+  border-bottom: 6rpx solid #fa7180;
+}
+
+.photo {
+  width: 100%;
+}
+
+.think {
+  width: 100%;
+  font-size: 30rpx;
+  color: #999;
+  margin: 30rpx 0 28rpx 0;
+}
+
+.startImg {
+  width: calc(100% - 60rpx);
+  height: 300rpx;
+  margin: 30rpx 0 0 30rpx;
+  background: #fff;
+  text-align: center;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 4rpx 6rpx rgba(51, 29, 25, 0.08);
+}
+
+.mk {
+  width: 174rpx;
+  height: 174rpx;
+  padding-top: 49rpx;
+}
+
+.upText {
+  position: relative;
+  bottom: 32rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.upImg {
+  display: flex;
+  flex-wrap: wrap;
+  margin:60rpx 0 0 30rpx;
+}
+
+.cover {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+}
+
+.key {
+  position: relative;
+}
+
+.delete {
+  position: absolute;
+  top: -9rpx;
+  right: 6rpx;
+}
+
+.x {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.pdd {
+  margin-right: 8rpx;
+}
+
+.cho {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 6rpx;
+}
+
+.tj {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.sub {
+  width: 100%;
+  height: 104rpx;
+  line-height: 104rpx;
+  background: #fa7180;
+  color: #fff;
+  font-size: 36rpx;
+  border-radius: 0rpx;
+}
+
+.long {
+  margin: 30rpx 0 28rpx 30rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.anli {
+  width: calc(100% - 60rpx);
+  height: 160rpx;
+  background: #fff;
+  margin: 20rpx 0 30rpx 30rpx;
+}
+
+.muban {
+  display: flex;
+  font-size: 32rpx;
+  color: #333;
+  margin: 0 30rpx;
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #ebebeb;
+  align-items: center;
+}
+
+.muban:last-child {
+  border: none;
+}
+
+.music {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 10rpx 30rpx 0 0;
+}
+
+.arrow {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.pad{
+  padding-left:30rpx;
+}
+
+.jt {
+  flex: 1;
+  text-align: right;
+  padding-top:10rpx;
+}
+
+.hotMuban {
+  width: calc(100% - 60rpx);
+  height: auto;
+  background: #fff;
+  margin-left:30rpx;
+}
+
+.xian {
+  width: 6rpx;
+  height: 36rpx;
+  background: rgba(128, 98, 232, 1);
+  border-radius: 3rpx;
+}
+
+.shad {
+  border-radius: 10px;
+  box-shadow: 4px 0px 6px rgba(51, 29, 25, 0.08);
+}
+
+.head {
+  display: flex;
+  margin: 0 30rpx;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #ebebeb;
+  align-items: center;
+}
+
+.tit {
+  color: #333;
+  font-size: 36rpx;
+  padding-left: 20rpx;
+}
+
+.yuan {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  position: relative;
+  bottom: 20rpx;
+}
+
+.tou {
+  width: 120rpx;
+  height: 120rpx;
+  position: relative;
+}
+
+.mbfm {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.jz {
+  width: 52rpx;
+  height: 52rpx;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+.play {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.first {
+  display: flex;
+  margin: 30rpx;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  width: 480rpx;
+  margin-left: 30rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+
+.biao {
+  padding-top: 14rpx;
+  font-size: 32rpx;
+}
+
+.gm {
+  font-size: 28rpx;
+  padding: 14rpx 0 50rpx 0;
+}
+
+.kong{
+  width:100%;
+  height:104rpx;
+  margin-top:30rpx;
+}

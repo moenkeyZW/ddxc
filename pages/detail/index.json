@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "影集详情",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": true
+}

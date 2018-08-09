@@ -1,0 +1,98 @@
+<!--pages/taskUp/index.wxml-->
+<view class='container'>
+  <view class='tab' bindtap='tabHandle'>
+    <view class='tabBtn {{curIndex === 0? "choosed": ""}}' data-index='{{0}}'>上传照片</view>
+    <view class='tabBtn {{curIndex === 1? "choosed": ""}}' data-index='{{1}}'>模板/音乐</view>
+  </view>
+  <view hidden="{{curIndex !== 0}}" class='photo'>
+    <block wx:if="{{isHaveImg}}">
+      <view class='startImg'>
+        <image src='../../imgs/upPhoto.png' class='mk' bindtap='choose'></image>
+        <view class='upText'>上传照片开始制作影集</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='upImg'>
+        <view wx:for="{{img_arr}}" wx:key="{{index}}" class='key'>
+          <view wx:if='{{index ===0}}'>
+            <image src='../../imgs/cover.png' class='cover'></image>
+          </view>
+          <view class='delete' catchtap="deleteImg" data-index="{{index}}">
+            <image src='../../imgs/x.png' class='x'></image>
+          </view>
+          <image src='{{item}}' data-index="{{index}}" class='cho pdd'></image>
+        </view>
+        <view bindtap='choose' hidden='{{img_arr.length>=20}}'>
+          <image src='../../imgs/choose.png' class='cho'></image>
+        </view>
+      </view>
+      <view class='tj'>
+        <button class='sub' bindtap='uploadImg'>提交制作</button>
+      </view>
+    </block>
+  </view>
+  <view hidden='{{curIndex !== 1}}' style='display:{{display}};width:100%;'>
+    <view class='anli shad'>
+      <view class='muban' bindtap='goMuban'>
+        <view>
+          <image src='../../imgs/muban.png' class='music'></image>
+        </view>
+        <view>
+          <text>当前模板:</text>
+          <text class='pad'>{{currently.moban_name}}</text>
+        </view>
+        <view class='jt'>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </view>
+      <view class='muban' bindtap='goMusic'>
+        <view>
+          <image src='../../imgs/music.png' class='music'></image>
+        </view>
+        <view>
+          <text>当前音乐:</text>
+          <text class='pad'>{{currently.music_name}}</text>
+        </view>
+        <view class='jt'>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </view>
+    </view>
+    <view class='hotMuban shad'>
+      <view class='head'>
+        <view class='xian'></view>
+        <view class='tit'>热门模板</view>
+      </view>
+      <view class='first' wx:for="{{muban_list}}" wx:key="{{index}}" data-index="{{index}}" bindtap='chooseMuban'>
+        <view class='tou'>
+          <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='mbfm'></image>
+          <view class='jz'>
+            <image src='../../imgs/play.png' class='play'></image>
+          </view>
+        </view>
+        <block wx:if="{{index==clickId}}">
+          <view class='intro' data-id="{{item.id}}" data-index="{{index}}">
+            <view>
+              <view class='biao' style='color:#FA7180'>{{item.name}}</view>
+              <view class='gm' style='color:#FABBC3'>{{item.explain}}</view>
+            </view>
+            <view class='yuan' style='background:#FA7180'></view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='intro' data-id="{{item.id}}" data-index="{{index}}">
+            <view>
+              <view class='biao' style='color:#333'>{{item.name}}</view>
+              <view class='gm' style='color:#b3b3b3'>{{item.explain}}</view>
+            </view>
+            <view class='yuan' style='background:#E0E0E0'></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='kong'></view>
+    <view class='tj'>
+      <button class='sub' bindtap='uploadImg'>提交制作</button>
+    </view>
+  </view>
+</view>

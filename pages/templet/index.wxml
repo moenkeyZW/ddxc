@@ -1,0 +1,57 @@
+<!--pages/taskUp/index.wxml-->
+<view class='container'>
+  <view class='anli shad'>
+    <view>
+      <view class='hot bt br'>
+        <image src='../../imgs/hot.png' class='rm'></image>
+        <view class='rmz'>热门</view>
+      </view>
+      <view class='itm itms br' bindtap='dianzi' style='color:{{color}}'>电子
+        <view class='xhx chang' style='display:{{display}}'></view>
+      </view>
+    </view>
+    <view class='mold'>
+      <view class='itm br' wx:for="{{mold_list}}" wx:key="{{index}}" data-index='{{index}}' bindtap='qita'>
+        <block wx:if="{{index==chooseId}}">
+          <text style='color:#FA7180'>{{item}}</text>
+          <view class='xhx'></view>
+        </block>
+         <block wx:else>
+          <text style='color:#000000'>{{item}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='hotMuban shad'>
+    <view class='first' wx:for="{{muban_list}}" wx:key="{{index}}" data-index="{{index}}" >
+      <view class='tou'>
+        <image src='../../imgs/wzj.png' class='mbfm'></image>
+        <view class='jz'>
+          <image src='../../imgs/play.png' class='play'></image>
+        </view>
+      </view>
+      <block wx:if="{{index==clickId}}">
+        <view class='intro' data-index="{{index}}"  bindtap='chooseMuban'>
+          <view>
+            <view class='biao' style='color:#FA7180'>感恩有你的心</view>
+            <view class='gm' style='color:#FABBC3'>匆匆那年，那年匆匆</view>
+          </view>
+          <view class='yuan' style='background:#FA7180'></view>
+        </view>
+      </block>
+      <block wx:else >
+        <view class='intro' data-index="{{index}}" bindtap='chooseMuban'>
+          <view>
+            <view class='biao' style='color:#333'>感恩有你的心</view>
+            <view class='gm' style='color:#b3b3b3'>匆匆那年，那年匆匆</view>
+          </view>
+          <view class='yuan' style='background:#E0E0E0'></view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='kong'></view>
+  <view class='tj'>
+    <button class='sub' bindtap='saveFile'>保存</button>
+  </view>
+</view>

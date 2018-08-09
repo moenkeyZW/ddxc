@@ -1,0 +1,42 @@
+/* pages/message/index.wxss */
+.form{
+  width:100%;
+}
+.lyb{
+  width:100%;
+  height:286rpx;
+  background:#fff;
+  margin-top:20rpx;
+  position: relative;
+}
+textarea{
+  width:93%;
+  height:286rpx;
+  color:#333;
+  font-size:28rpx;
+  padding:14rpx 0 14rpx 30rpx;
+}
+.mes{
+  color:#b3b3b3;
+  font-size:28rpx;
+}
+.sub{
+  width:360rpx;
+  height:88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  background:#FA7180;
+  color:#fff;
+  font-size:36rpx;
+  text-align: center;
+  margin-top:60rpx;
+  box-shadow:0rpx 6rpx 20rpx 6rpx rgba(250,113,128,0.3);
+}
+
+.num{
+  color:#B3B3B3;
+  font-size:24rpx;
+  position: absolute;
+  right:30rpx;
+  bottom:20rpx;
+}

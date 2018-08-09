@@ -1,0 +1,66 @@
+/* pages/templet/index.wxss */
+@import '../upPhotos/index.wxss';
+
+.anli, .hotMuban {
+  margin-left: 0;
+}
+
+.anli {
+  height: 240rpx;
+  display: flex;
+}
+
+.hot {
+  width: 180rpx;
+  height: 160rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.rm {
+  margin-top: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.rmz {
+  color: #fa7180;
+  font-size: 28rpx;
+}
+
+.mold {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.itm {
+  width: 170rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.itms {
+  width: 180rpx;
+}
+
+.br {
+  border-right: 1rpx solid #ebebeb;
+   border-bottom: 1rpx solid #ebebeb;
+}
+
+
+.xhx {
+  width: 80rpx;
+  height: 4rpx;
+  background: rgba(250, 113, 128, 1);
+  border-radius: 2rpx;
+  position: relative;
+  left:45rpx;
+  bottom: 5rpx;
+}
+.chang{
+  left:50rpx;
+}

@@ -1,0 +1,12 @@
+<!--pages/message/index.wxml-->
+<view class='container'>
+  <form bindsubmit="leaveWord" class='form'>
+    <view class='lyb'>
+      <textarea placeholder="请输入留言内容" value='{{userInput}}' bindinput="bindText" maxlength='128' placeholder-class='mes' name="message" ></textarea>
+      <view class='num'>{{t_length}}/128</view>
+    </view>
+    <view >
+      <button form-type="submit" class='sub'>保存</button>
+    </view>
+  </form>
+</view>

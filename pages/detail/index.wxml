@@ -1,0 +1,96 @@
+<!--pages/detail/index.wxml-->
+<view class='container'>
+  <view class='fmyj'>
+    <image src="{{list.cover}}" class='fmyjt'></image>
+    <view class='bofang'>
+      <image src='../../imgs/play_sm.png' class='play'></image>
+    </view>
+    <view class='ty'>
+      <view class='start' bindtap='makeMovie'>制作影集</view>
+      <view class='xq'>
+        <view>
+          <image src='../../imgs/look.png' class='com look'></image>
+          <text class='num'>{{list.view}}</text>
+        </view>
+        <view bindtap='clickZan' wx:if="{{isZan===0}}">
+          <image src='../../imgs/zan.png' class='com zan'></image>
+          <text class='num'>{{list.praise}}</text>
+        </view>
+        <view wx:if="{{isZan===1}}">
+          <image src='../../imgs/zan_selected.png' class='com zan'></image>
+          <text class='num'>{{list.praise}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='details'>
+    <view class='tit'>{{list.title}}</view>
+    <view class='dis aa'>
+      <view>
+        <image src='{{list.headimgurl}}' class='ava'></image>
+      </view>
+      <view class='dis bb'>
+        <view class=''>
+          <view class='nickname'>{{list.nickname}}</view>
+          <view class='date'>{{list.timeline}}</view>
+        </view>
+        <view class='enjoy'>
+          <image src='../../imgs/share.png' class='share'></image>
+          分享
+        </view>
+      </view>
+    </view>
+    <view class='intro'>{{list.depict}}</view>
+  </view>
+  <block wx:if="{{haveMes}}">
+    <view class='board'>
+      <view class='new'>
+        <view class='dx newMes'>最新留言</view>
+        <view class='dx write' bindtap='writeMes'>写留言</view>
+      </view>
+      <view wx:for="{{message}}" wx:key="{{index}}" data-id="{{item.id}}">
+        <view class='dis aa'>
+          <view>
+            <image src='{{item.headimgurl}}' class='avas'></image>
+          </view>
+          <view class='dis bb cc'>
+            <view class=''>
+              <view class='nickname'>{{item.nickname}}</view>
+              <view class='date'>{{item.create_time}}</view>
+              <view class='dx concrete'>{{item.content}}</view>
+            </view>
+            <view class='pl' bindtap='reply' data-msgid="{{item.id}}" data-index='{{index}}' hidden='{{item.reply!==null}}'>
+              <image src='../../imgs/reply.png' class='reply'></image>
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{item.reply!==null}}">
+          <view class='dis'>
+            <view class='xian'></view>
+            <view class='hf'>作者回复</view>
+          </view>
+          <view class='dx hfcontent'>{{item.reply}}</view>
+        </block>
+        <block wx:if="{{item.reply===null}}">
+          <view class="dialog" hidden="{{item.bool}}">
+            <form bindsubmit="replyContent">
+              <input name='reply' />
+              <view>
+                <button formType="submit" class='hfpl'>回复</button>
+              </view>
+            </form>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='noBoard'>
+      <view class='new'>
+        <view class='dx newMes'>最新留言</view>
+        <view class='dx write' bindtap='writeMes'>写留言</view>
+      </view>
+      <view class='zwMes'>暂无留言</view>
+    </view>
+  </block>
+</view>

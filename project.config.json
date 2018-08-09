@@ -1,0 +1,82 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.1",
+	"appid": "wx486d76fd7cf912a2",
+	"projectname": "ddxc",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 6,
+			"list": [
+				{
+					"id": -1,
+					"name": "上传图片",
+					"pathName": "pages/upPhotos/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "影集模板",
+					"pathName": "pages/templet/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "音乐模板",
+					"pathName": "pages/music/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "点点影集",
+					"pathName": "pages/album/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "影集详情",
+					"pathName": "pages/detail/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "写留言",
+					"pathName": "pages/message/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布",
+					"pathName": "pages/publish/index"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,78 @@
+/* pages/publish/index.wxss */
+@import '../detail/index.wxss';
+
+.describe {
+  width: calc(100% - 60rpx);
+  margin-top: 20rpx;
+  height: 386rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow:4px 0px 6px rgba(51,29,25,0.08);
+}
+
+.fb {
+  width: 360rpx;
+  height: 88rpx;
+  background: rgba(250, 113, 128, 1);
+  border-radius: 44rpx;
+  color:#fff;
+  font-size:36rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin-top:170rpx;
+}
+.wrapper{
+  width:630rpx;
+  margin:20rpx 30rpx 0rpx 30rpx;
+  border-bottom:1rpx solid #EBEBEB;
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  padding-bottom:10rpx;
+}
+.detail{
+  margin:25rpx 0 0 30rpx;
+  position: relative;
+}
+textarea{
+  width:570rpx;
+  height:188rpx;
+  background:#EBEBEB;
+  border-radius: 10rpx;
+  margin-top:14rpx;
+  padding:12rpx 30rpx 0 30rpx;
+  color:#333;
+  font-size:28rpx;
+}
+.pub{
+  font-size:28rpx;
+  color:#B3B3B3;
+}
+.pubs{
+  font-size:28rpx;
+  color:#333;
+}
+.title{
+  color:#333;
+  font-size:32rpx;
+}
+.figure{
+  position: absolute;
+  bottom:8rpx;
+  right:50rpx;
+  color:#B3B3B3;
+  font-size:24rpx;
+}
+.progress{
+  width:420rpx;
+  height:8rpx;
+  border-radius: 4rpx;
+  position: absolute;
+  color:#fff;
+  text-align: center;
+  font-size:28rpx;
+  transform: translate(-50%,-50%);
+  left:50%;
+  bottom:20%;
+
+}

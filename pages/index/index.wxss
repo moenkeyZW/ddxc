@@ -1,0 +1,164 @@
+/**index.wxss**/
+
+.tarbar {
+  width: 100%;
+  height: 98rpx;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.make {
+  width: 96rpx;
+  height: 96rpx;
+  background: #fa7180;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -20rpx;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  color: #fff;
+}
+
+.jia {
+  width: 48rpx;
+  height: 48rpx;
+  position: relative;
+  transform: translate(-50%, -50%);
+  left:50%;
+  top:42%;
+}
+
+.icon {
+  width: 48rpx;
+  height: 48rpx;
+  position: relative;
+  top: 10rpx;
+}
+
+.icon_text {
+  color: #b2b2b2;
+  font-size: 22rpx;
+}
+
+.trend {
+  color: #fa7180;
+}
+
+.ic {
+  position: absolute;
+  bottom: 10rpx;
+}
+
+.lf {
+  left: 152rpx;
+}
+
+.rg {
+  right: 152rpx;
+}
+
+.header {
+  width: 100%;
+  height: 300rpx;
+  position: relative;
+}
+
+.bg {
+  width: 100%;
+  height: 300rpx;
+}
+
+.av {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 10rpx solid #fff;
+  overflow: hidden;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 136rpx;
+}
+
+.nickname {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  bottom: 10rpx;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+.trend_list {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.ava {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 30rpx;
+  border-radius: 50%;
+}
+
+.appraise {
+  margin-top: 35rpx;
+}
+
+.time {
+  font-size: 24rpx;
+  color: #b3b3b3;
+}
+
+.name {
+  color: #333;
+  font-size: 28rpx;
+}
+
+.pj {
+  padding: 4rpx 0 0 20rpx;
+}
+
+.content {
+  font-size: 28rpx;
+  color: #808080;
+  margin-top: 10rpx;
+  width: 580rpx;
+}
+
+.detail {
+  width: 580rpx;
+  height: 124rpx;
+  background: #f0f0f0;
+  margin: 30rpx 0;
+  display: flex;
+}
+
+.fm {
+  width: 182rpx;
+  height: 104rpx;
+  padding: 10rpx;
+}
+
+.title {
+  color: #333;
+  font-size: 28rpx;
+  align-self: center;
+  padding-left: 2rpx;
+}
+
+.kong {
+  width: 100%;
+  height: 98rpx;
+}
+
+.noMes {
+  width: 480rpx;
+  height: 372rpx;
+  margin-top: 219rpx;
+}

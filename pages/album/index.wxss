@@ -1,0 +1,110 @@
+/* pages/album/index.wxss */
+@import '../index/index.wxss';
+
+.album_list {
+  width: 100%;
+  height: 484rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.albumFm {
+  position: relative;
+}
+
+.bigImg {
+  width: 690rpx;
+  height: 388rpx;
+  margin: 30rpx 30rpx 0rpx 30rpx;
+  border-radius: 10rpx;
+}
+
+.mf {
+  margin: 0 0 28rpx 51rpx;
+}
+
+.bt {
+  width: 690rpx;
+  height: 80rpx;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+  position: absolute;
+  bottom: 10rpx;
+  left: 30rpx;
+  border-radius: 10rpx;
+}
+
+.js {
+  position: absolute;
+  left: 20rpx;
+  top: 26rpx;
+  width: 585rpx;
+  font-size: 28rpx;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bts {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  width: 690rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+}
+
+.more {
+  position: absolute;
+  top: 38rpx;
+  right: 28rpx;
+  width: 36rpx;
+  height: 32rpx;
+  border-radius: 2px;
+}
+
+.smtb {
+  width: 36rpx;
+  height: 36rpx;
+  padding-right:14rpx;
+}
+
+.dialog {
+  position: absolute;
+  top: 60rpx;
+  right: 104rpx;
+}
+
+.kuang {
+  width: 156rpx;
+  height: 120rpx;
+}
+
+.dikuang {
+  position: relative;
+}
+
+.zt {
+  font-size: 28rpx;
+  color: #fff;
+  position: relative;
+  top:-8rpx;
+}
+.cz,.sc{
+  position: absolute;
+  left:20rpx;
+}
+.cz{
+  top:10rpx;
+  border-bottom:1rpx solid #fff;
+}
+.sc{
+  bottom:10rpx;
+}
+.hide{
+ display: none;
+}
+.show{ 
+ display: block;
+}

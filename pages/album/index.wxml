@@ -1,0 +1,68 @@
+<!--pages/album/index.wxml-->
+<view class="container">
+  <view class='header'>
+    <image src='../../imgs/bg.png' class='bg'></image>
+    <open-data type="userAvatarUrl" class='av'></open-data>
+    <open-data type="userNickName" class='nickname'></open-data>
+  </view>
+  <view wx:if="{{status===0}}">
+    <view>
+      <image src='../../imgs/noAlbum.png' class='noMes'></image>
+    </view>
+  </view>
+  <view wx:if="{{status===1}}" style='width:100%'>
+    <view class='album_list' wx:for="{{album_list}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='albumFm'>
+        <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' bindtap='goDetail' data-id="{{item.id}}"></image>
+        <view class='bts'>
+          <image src='../../imgs/more.png' class='more' bindtap='moreOperate' data-index='{{index}}'></image>
+        </view>
+        <view class="dialog " hidden='{{item.bool}}'>
+          <view class='dikuang'>
+            <image src='../../imgs/kuang.png' class='kuang'></image>
+            <view class='cz' bindtap='goUpPhoto' data-id='{{item.id}}'>
+              <image src='../../imgs/redo.png' class='smtb'></image>
+              <text class='zt'>重制</text>
+            </view>
+            <view class='sc' bindtap='deleteItem' data-id='{{item.id}}' data-index='{{index}}'>
+              <image src='../../imgs/del.png' class='smtb'></image>
+              <text class='zt'>删除</text>
+            </view>
+          </view>
+        </view>
+        <view class='bt'>
+          <view class='js'>{{item.title}}</view>
+        </view>
+      </view>
+      <view class='time mf'>{{item.timeline}}</view>
+    </view>
+    <view class='kong'></view>
+  </view>
+  <view wx:if="{{status===2}}" style='width:100%'>
+    <view class='album_list' wx:for="{{other_list}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='albumFm'>
+        <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' bindtap='goDetail' data-id="{{item.id}}"></image>
+        <view class='bt'>
+          <view class='js'>{{item.title}}</view>
+        </view>
+      </view>
+      <view class='time mf'>{{item.timeline}}</view>
+    </view>
+    <view class='kong'></view>
+  </view>
+  <view class='tarbar'>
+    <view class='ic lf' bindtap='goTrend'>
+      <image src='../../imgs/trends.png' class='icon'></image>
+      <view class='icon_text'>动态</view>
+    </view>
+    <view>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='make'>
+        <image src='../../imgs/icon_make.png' class='jia'></image>
+      </button>
+    </view>
+    <view class='ic rg'>
+      <image src='../../imgs/album_selected.png' class='icon'></image>
+      <view class='icon_text trend'>影集</view>
+    </view>
+  </view>
+</view>
