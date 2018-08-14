@@ -6,12 +6,17 @@ Page({
   data: {
     userInfo:'',
     trend_list:'',
-    status:2,
+    status:1,
     self_list:'',
   },
 
-  onLoad: function() {
-
+  onLoad: function(options) {
+    console.log(options);
+    if (options.status) {
+      this.setData({
+        status: options.status
+      })
+    }
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -59,10 +64,10 @@ Page({
     })
   },
   goAlbum: function() {
-    var that=this;
-    // var id=that.data.id
+    var that = this;
+    var status = that.data.status;
     wx.redirectTo({
-      url: '/pages/album/index',
+      url: '/pages/album/index?status=' + status,
     })
   },
   getUserInfo: function(e) {

@@ -1,0 +1,11 @@
+<!--pages/share/index.wxml-->
+<view class='container'>
+  <view>
+    <image src='../../imgs/shareBoy.png' class='share'></image>
+  </view>
+  <view class='cor good'>好影集</view>
+  <view class='cor friend'>当然要分享给好友啦！</view>
+  <view>
+    <button open-type='share' class='shareBtn'>分享</button>
+  </view>
+</view>

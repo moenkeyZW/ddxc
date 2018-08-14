@@ -1,1 +1,5 @@
-{}
+{
+  "navigationBarTitleText": "发布影集",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": true
+}

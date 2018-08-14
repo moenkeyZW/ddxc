@@ -22,7 +22,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    if(options.status){
+      this.setData({
+        status:options.status
+      })
+    }
   },
 
   /**
@@ -57,8 +61,10 @@ Page({
   },
 
   goTrend: function() {
+    var that=this;
+    var status=that.data.status;
     wx.redirectTo({
-      url: '/pages/index/index',
+      url: '/pages/index/index?status=' + status,
     })
   },
   getUserInfo: function(e) {

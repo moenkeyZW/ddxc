@@ -1,0 +1,32 @@
+/* pages/share/index.wxss */
+
+.cor {
+  color: #fa7180;
+}
+
+.share {
+  width: 690rpx;
+  height: 600rpx;
+  margin: 100rpx 0 50rpx 0;
+
+}
+
+.good {
+  font-size: 60rpx;
+  margin-bottom:25rpx;
+}
+
+.friend {
+  font-size: 36rpx;
+}
+
+.shareBtn {
+  width: 360rpx;
+  height: 88rpx;
+  background: rgba(250, 113, 128, 1);
+  border-radius: 44rpx;
+  box-shadow: 0 6rpx 10rpx 0 rgba(206, 62, 78, 0.2);
+  color:#fff;
+  font-size:36rpx;
+  margin-top:106rpx;
+}

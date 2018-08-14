@@ -1,24 +1,31 @@
 <!--pages/detail/index.wxml-->
 <view class='container'>
   <view class='fmyj'>
-    <image src="{{list.cover}}" class='fmyjt'></image>
-    <view class='bofang'>
-      <image src='../../imgs/play_sm.png' class='play'></image>
-    </view>
+    <button open-type="getUserInfo" bindgetuserinfo="preview" plain='true' class='fmyjt'>
+      <image src="{{list.cover}}" class='fmyjt'></image>
+      <view class='bofang'>
+        <image src='../../imgs/play_sm.png' class='play'></image>
+      </view>
+    </button>
     <view class='ty'>
-      <view class='start' bindtap='makeMovie'>制作影集</view>
+      <view>
+        <button open-type="getUserInfo" bindgetuserinfo="makeMovie" class='start'>制作影集</button>
+      </view>
       <view class='xq'>
         <view>
           <image src='../../imgs/look.png' class='com look'></image>
           <text class='num'>{{list.view}}</text>
         </view>
-        <view bindtap='clickZan' wx:if="{{isZan===0}}">
-          <image src='../../imgs/zan.png' class='com zan'></image>
-          <text class='num'>{{list.praise}}</text>
-        </view>
+
         <view wx:if="{{isZan===1}}">
           <image src='../../imgs/zan_selected.png' class='com zan'></image>
           <text class='num'>{{list.praise}}</text>
+        </view>
+        <view wx:else>
+          <button open-type="getUserInfo" bindgetuserinfo="clickZan" plain='true' class='zanBtn'>
+            <image src='../../imgs/zan.png' class='com zan'></image>
+            <text class='num'>{{list.praise}}</text>
+          </button>
         </view>
       </view>
     </view>
@@ -27,16 +34,19 @@
     <view class='tit'>{{list.title}}</view>
     <view class='dis aa'>
       <view>
-        <image src='{{list.headimgurl}}' class='ava'></image>
+        <button open-type="getUserInfo" bindgetuserinfo="goToAlbum" plain='true' class='avaBtn'>
+          <image src='{{list.headimgurl}}' class='ava'></image>
+        </button>
       </view>
       <view class='dis bb'>
         <view class=''>
           <view class='nickname'>{{list.nickname}}</view>
           <view class='date'>{{list.timeline}}</view>
         </view>
-        <view class='enjoy'>
-          <image src='../../imgs/share.png' class='share'></image>
-          分享
+        <view wx:if="{{openid}}">
+          <button open-type='share' class='enjoy' plain='true'>
+            <image src='../../imgs/share.png' class='share'></image>
+            分享</button>
         </view>
       </view>
     </view>
@@ -46,7 +56,9 @@
     <view class='board'>
       <view class='new'>
         <view class='dx newMes'>最新留言</view>
-        <view class='dx write' bindtap='writeMes'>写留言</view>
+        <view>
+          <button open-type="getUserInfo" bindgetuserinfo="writeMes" plain='true' class='dx write'>写留言</button>
+        </view>
       </view>
       <view wx:for="{{message}}" wx:key="{{index}}" data-id="{{item.id}}">
         <view class='dis aa'>
@@ -88,7 +100,9 @@
     <view class='noBoard'>
       <view class='new'>
         <view class='dx newMes'>最新留言</view>
-        <view class='dx write' bindtap='writeMes'>写留言</view>
+        <view>
+          <button open-type="getUserInfo" plain='true' bindgetuserinfo="writeMes" class='dx write'>写留言</button>
+        </view>
       </view>
       <view class='zwMes'>暂无留言</view>
     </view>

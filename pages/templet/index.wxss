@@ -6,7 +6,7 @@
 }
 
 .anli {
-  height: 240rpx;
+  height: 160rpx;
   display: flex;
 }
 

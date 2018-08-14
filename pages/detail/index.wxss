@@ -9,6 +9,11 @@
 .fmyjt {
   width: 100%;
   height: 422rpx;
+  padding: 0;
+}
+
+.fmyjt[plain] {
+  border: none;
 }
 
 .play {
@@ -25,6 +30,14 @@
   width: 40rpx;
   height: 40rpx;
   margin-left: 55rpx;
+}
+
+.zanBtn {
+  padding: 0;
+}
+
+.zanBtn[plain] {
+  border: none;
 }
 
 .look {
@@ -59,6 +72,7 @@
   text-align: center;
   font-size: 24rpx;
   margin: 16rpx 0 16rpx 30rpx;
+  padding: 0;
 }
 
 .xq {
@@ -93,7 +107,17 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
+}
+
+.avaBtn {
   margin-right: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  padding: 0;
+}
+
+.avaBtn[plain] {
+  border: none;
 }
 
 .share {
@@ -132,6 +156,11 @@
 .enjoy {
   color: #808080;
   font-size: 28rpx;
+  padding: 0;
+}
+
+.enjoy[plain] {
+  border: none;
 }
 
 .intro {
@@ -188,8 +217,13 @@
 }
 
 .write {
-  color: #8062e8;
+  color: #8062e8 !important;
   margin-right: 60rpx;
+  padding: 0;
+}
+
+.write[plain] {
+  border: none;
 }
 
 .concrete {
@@ -227,7 +261,7 @@
 }
 
 .dialog {
-  width:550rpx;
+  width: 550rpx;
   height: 72rpx;
   margin-left: 140rpx;
   border-radius: 6rpx;
@@ -238,8 +272,9 @@
 }
 
 input {
-  height:28rpx;
-  padding:12rpx 0 0 22rpx;
+  height: 28rpx;
+  width: 400rpx;
+  padding: 15rpx 0 5rpx 22rpx;
   color: #333;
   font-size: 28rpx;
 }
@@ -254,6 +289,6 @@ input {
   border-radius: 6rpx;
   font-size: 26rpx;
   position: relative;
-  left:220rpx;
-  top:15rpx;
+  left: 220rpx;
+  top: 15rpx;
 }

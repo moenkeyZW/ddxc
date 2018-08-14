@@ -1,0 +1,22 @@
+<!--pages/revisePhoto/index.wxml-->
+<view class='container'>
+  <view class='photo'>
+    <view class='upImg'>
+      <view wx:for="{{img_arr}}" wx:key="{{index}}" class='key'>
+        <view wx:if='{{index ===0}}'>
+          <image src='../../imgs/cover.png' class='cover'></image>
+        </view>
+        <view class='delete' catchtap="deleteImg" data-index="{{index}}">
+          <image src='../../imgs/x.png' class='x'></image>
+        </view>
+        <image src='{{item}}' data-index="{{index}}" class='cho pdd'></image>
+      </view>
+      <view bindtap='choose' hidden='{{img_arr.length>=20}}'>
+        <image src='../../imgs/choose.png' class='cho'></image>
+      </view>
+    </view>
+    <view class='tj'>
+      <button class='sub' bindtap='uploadImg'>保存</button>
+    </view>
+  </view>
+</view>

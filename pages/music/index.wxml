@@ -2,13 +2,13 @@
 
 <!--pages/taskUp/index.wxml-->
 <view class='container'>
-  <view class='anli shad'>
+  <view class='anli anlis shad'>
     <view>
-      <view class='hot bt br'>
-        <image src='../../imgs/hot.png' class='rm'></image>
-        <view class='rmz'>热门</view>
+      <view class='hot bt br' bindtap='hot'>
+        <image src='../../imgs/{{showHot?"hot":"no_hot"}}.png' class='rm'></image>
+        <view class='rmz' style='color:{{cors}}'>热门</view>
       </view>
-      <view class='itm itms br' bindtap='dianzi' style='color:{{color}}'>电子
+      <view class='itm itms br' bindtap='yaogun' data-index="{{9}}" style='color:{{color}}'>摇滚
         <view class='xhx chang' style='display:{{display}}'></view>
       </view>
     </view>
@@ -24,32 +24,32 @@
       </view>
     </view>
   </view>
-  <view class='byoMusic shad'>
-    <view>
+  <view class='byoMusic shad' bindtap='moren' data-id="{{moren_id}}">
+    <view style='color:{{cor}}'>
       <text style='padding-left:30rpx;'>模板自带音乐：</text>
-      <text>世上只有妈妈好</text>
+      <text>{{music_name}}</text>
     </view>
-    <view class='dw' style='background:#E0E0E0'></view>
+    <view class='dw' style='background:{{background}}'></view>
   </view>
   <view class='hotMuban shad'>
-    <view class='first' wx:for="{{muban_list}}" wx:key="{{index}}" data-index="{{index}}" bindtap='chooseMuban'>
-      <block wx:if="{{index==clickId}}">
+    <view class='first' wx:for="{{music_list}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bindtap='chooseMuban'>
+      <block wx:if="{{index==clickId || selectedId==item.id }}">
         <view style='display:{{displays}}'>
           <image src='../../imgs/{{showView?"pause":"broadcast"}}.png' class='broadcast'></image>
         </view>
-        <view class='intro' data-index="{{index}}">
+        <view class='intro'  >
           <view>
-            <view class='biao' style='color:#FA7180'>感恩有你的心</view>
-            <view class='gm' style='color:#FABBC3'>匆匆那年，那年匆匆</view>
+            <view class='biao' style='color:#FA7180'>{{item.name}}</view>
+            <view class='gm' style='color:#FABBC3'>{{item.author}}</view>
           </view>
           <view class='dw' style='background:#FA7180'></view>
         </view>
       </block>
       <block wx:else>
-        <view class='intro' data-index="{{index}}">
+        <view class='intro' >
           <view>
-            <view class='biao' style='color:#333'>感恩有你的心</view>
-            <view class='gm' style='color:#b3b3b3'>匆匆那年，那年匆匆</view>
+            <view class='biao' style='color:#333'>{{item.name}}</view>
+            <view class='gm' style='color:#b3b3b3'>{{item.author}}</view>
           </view>
           <view class='dw' style='background:#E0E0E0'></view>
         </view>

@@ -2,73 +2,132 @@ var app = getApp();
 
 Page({
   data: {
-    muban_list: [1, 2, 3, 4, 5, 6],
     clickId: -1,
-    mold_list: ['生日', '儿歌', '节日', '亲子', '爱情', '快节奏', '钢琴', '聚会', '纯音乐'],
+    mold_list: ['风景', '儿童', '经典', '青春', '爱情', '心情', ],
     chooseId:-1,
-    color:'#000000',
-    display:'none',
+    cor:'#FA7180',
     moban_id:'',
     hot_list:'',
+    showHot:true,
+    selectedId:'',
+    album_id:'',
   },
   onLoad: function (options) {
+    var that=this;
     var moban_id=options.moban_id;
-    this.setData({
+    that.setData({
       moban_id:moban_id,
-      clickId:moban_id
+      selectedId:moban_id
     })
-    console.log(moban_id,this.data.clickId)
+    if (options.album_id) {
+      that.setData({
+        album_id: options.album_id
+      })
+    }
   },
   onShow: function () {
     var that=this;
+    var moban_id=that.data.moban_id;
     wx.request({
       url: app.globalData.base_url + '/moban_list',
       data: {
+        moban_id: moban_id,
       },
       method: 'GET',
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(res)
         that.setData({
           hot_list:res.data.remen,
+          selectedId: res.data.select_moban.moban_id,
         })
       }
     })
   },
-  dianzi:function(e){
-    var that = this;
-    that.setData({
-      display:'block',
-      color:'#FA7180',
-      chooseId:-1,
+  previewMuban: function (e) {
+    var moban_id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/webView/index?state=3&&moban_id=' + moban_id,
     })
   },
+  hot:function(){
+    var that = this;
+    that.onShow();
+    that.setData({
+      clickId: -1,
+      cor: '#FA7180',
+      showHot:true,
+      chooseId: -1,
+    })
+  },
+
   qita:function(e){
     var that = this;
     var id = e.currentTarget.dataset.index;
-    that.setData({
-      chooseId: id,
-      display:'none',
-      color:'#000000',
+    var moban_id = that.data.moban_id;
+    wx.request({
+      url: app.globalData.base_url + '/moban_lable',
+      data: {
+        type:id,
+        moban_id: moban_id,
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          selectedId: res.data.select_moban.moban_id,
+          clickId:-1,
+          hot_list: res.data.list,
+          chooseId: id,
+          showHot: false,
+          cor: '#000000',
+        })
+      }
     })
   },
   chooseMuban: function (e) {
-    console.log(e)
     var that = this;
     var id = e.currentTarget.dataset.index;
     var moban_id = e.currentTarget.dataset.id;
     that.setData({
       clickId: id,
-      moban_id:moban_id
+      moban_id:moban_id,
+      selectedId:-1,
     })
   },
   saveFile:function(){
     var that=this;
     var moban_id=that.data.moban_id;
-    wx:wx.navigateTo({
-      url: '/pages/upPhotos/index?moban_id='+moban_id,
-    })
+    var album_id = that.data.album_id;
+    let pages = getCurrentPages();//当前页面
+    let prevPage = pages[pages.length - 2]; //上一页面（prevPage 就是获取的上一个页面的JS里面所有pages的信息）
+    if (prevPage.route == "pages/upPhotos/index") {
+      prevPage.setData({
+        'currently.moban_id': moban_id,
+      })
+      wx: wx.navigateBack({
+        delta: 1,
+      })
+    } else {
+      wx.request({
+        url: app.globalData.base_url + '/save_moban',
+        data: {
+          album_id: album_id,
+          moban_id: moban_id,
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          wx.reLaunch({
+            url: '/pages/webView/index?state=4&album_id=' + album_id,
+          })
+        }
+      })
+    }
   },
 })

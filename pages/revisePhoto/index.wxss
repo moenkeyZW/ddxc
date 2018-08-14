@@ -1,0 +1,2 @@
+/* pages/revisePhoto/index.wxss */
+@import '../upPhotos/index.wxss';

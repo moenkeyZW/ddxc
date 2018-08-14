@@ -64,25 +64,25 @@
         <view class='tit'>热门模板</view>
       </view>
       <view class='first' wx:for="{{muban_list}}" wx:key="{{index}}" data-index="{{index}}" >
-        <view class='tou'>
+        <view class='tou' bindtap='previewMuban' data-id="{{item.moban_id}}">
           <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='mbfm'></image>
           <view class='jz'>
             <image src='../../imgs/play.png' class='play'></image>
           </view>
         </view>
-        <block wx:if="{{index==clickId || clickId==item.id }}">
-          <view class='intro' data-id="{{item.id}}" data-name="{{item.name}}" data-index="{{index}}" bindtap='chooseMuban'>
+        <block wx:if="{{index==clickId || clickId==item.moban_id }}">
+          <view class='intro' data-id="{{item.moban_id}}" data-name="{{item.moban_name}}" data-music="{{item.music_name}}"data-musicid="{{item.music_id}}"data-index="{{index}}" bindtap='chooseMuban'>
             <view>
-              <view class='biao' style='color:#FA7180'>{{item.name}}</view>
+              <view class='biao' style='color:#FA7180'>{{item.moban_name}}</view>
               <view class='gm' style='color:#FABBC3'>{{item.explain}}</view>
             </view>
             <view class='yuan' style='background:#FA7180'></view>
           </view>
         </block>
         <block wx:else>
-          <view class='intro' data-id="{{item.id}}" data-name="{{item.name}}" data-index="{{index}}" bindtap='chooseMuban'>
+          <view class='intro' data-id="{{item.moban_id}}" data-name="{{item.moban_name}}" data-music="{{item.music_name}}" data-musicid="{{item.music_id}}"data-index="{{index}}" bindtap='chooseMuban'>
             <view>
-              <view class='biao' style='color:#333'>{{item.name}}</view>
+              <view class='biao' style='color:#333'>{{item.moban_name}}</view>
               <view class='gm' style='color:#b3b3b3'>{{item.explain}}</view>
             </view>
             <view class='yuan' style='background:#E0E0E0'></view>

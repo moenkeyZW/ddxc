@@ -1,12 +1,13 @@
 <!--pages/publish/index.wxml-->
 <view class='container'>
-  <view class='fmyj'>
-    <image src='../../imgs/wzj.png' class='fmyjt'></image>
-    <view class='bofang' style='display:{{display}}'>
+  <view class='fmyj' bindtap='pubPrev'>
+    <image src='{{cover}}' class='fmyjt'></image>
+    <view class='bofang' wx:if="{{!showDis}}">
       <image src='../../imgs/play_sm.png' class='play'></image>
     </view>
-    <view class='progress'>
-      <progress activeColor='#FA7180'backgroundColor='#fff' active  percent="60" style='border-radius:100rpx;overflow:hidden'/>
+    <view class='progress' wx:if="{{showDis}}">
+      <progress activeColor='#FA7180'backgroundColor='#fff' active-mode='forwards'  percent="{{percent}}" style='border-radius:100rpx;overflow:hidden'/>
+      <view class='round' style='left:{{left}}%'></view>
       <view>正在制作影集</view>
     </view>
   </view>

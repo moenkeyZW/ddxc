@@ -8,7 +8,10 @@
     "pages/upPhotos/index",
     "pages/detail/index",
     "pages/message/index",
-    "pages/publish/index"
+    "pages/publish/index",
+    "pages/webView/index",
+    "pages/share/index",
+    "pages/revisePhoto/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

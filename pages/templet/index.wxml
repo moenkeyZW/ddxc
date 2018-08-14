@@ -2,12 +2,9 @@
 <view class='container'>
   <view class='anli shad'>
     <view>
-      <view class='hot bt br'>
-        <image src='../../imgs/hot.png' class='rm'></image>
-        <view class='rmz'>热门</view>
-      </view>
-      <view class='itm itms br' bindtap='dianzi' style='color:{{color}}'>电子
-        <view class='xhx chang' style='display:{{display}}'></view>
+      <view class='hot bt br' bindtap='hot'>
+        <image src='../../imgs/{{showHot?"hot":"no_hot"}}.png' class='rm'></image>
+        <view class='rmz' style='color:{{cor}}'>热门</view>
       </view>
     </view>
     <view class='mold'>
@@ -24,13 +21,13 @@
   </view>
   <view class='hotMuban shad'>
     <view class='first' wx:for="{{hot_list}}" wx:key="{{index}}" data-index="{{index}}" >
-      <view class='tou'>
+      <view class='tou' bindtap='previewMuban' data-id='{{item.id}}'>
         <image src='https://www.qlgbp.cn/Public{{item.cover}}'  class='mbfm'></image>
         <view class='jz'>
           <image src='../../imgs/play.png' class='play'></image>
         </view>
       </view>
-      <block wx:if="{{index==clickId || clickId==item.id }}">
+      <block wx:if="{{index==clickId || selectedId==item.id  }}">
         <view class='intro' data-id="{{item.id}}" data-index="{{index}}"  bindtap='chooseMuban'>
           <view>
             <view class='biao' style='color:#FA7180'>{{item.name}}</view>

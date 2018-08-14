@@ -15,7 +15,7 @@
   background: #fa7180;
   border-radius: 50%;
   position: absolute;
-  bottom: -20rpx;
+  bottom: -16rpx;
   transform: translate(-50%, -50%);
   left: 50%;
   color: #fff;
@@ -71,10 +71,10 @@
 }
 
 .av {
-  width: 120rpx;
-  height: 120rpx;
+  width: 124rpx;
+  height: 124rpx;
   border-radius: 50%;
-  border: 10rpx solid #fff;
+  border: 8rpx solid #fff;
   overflow: hidden;
   position: absolute;
   transform: translate(-50%, -50%);

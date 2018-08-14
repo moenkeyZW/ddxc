@@ -6,12 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    haveMes:false,
-    message:'',
-    list:'',
-    id:'',
-    msgid:'',
-    isZan:'',
+    haveMes: false,
+    message: '',
+    list: '',
+    id: '',
+    msgid: '',
+    isZan: '',
+    openid: '',
   },
 
   /**
@@ -19,12 +20,12 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    var id=options.id;
+    var id = options.id;
     that.setData({
-      id:id
+      id: id
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.onShow(); // 刷新页面
     wx.hideNavigationBarLoading() //完成停止加载
@@ -34,63 +35,150 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that=this;
-    var id=that.data.id
+    var that = this;
+    if (wx.getStorageSync('openid')) {
+      var openid = wx.getStorageSync('openid')
+      that.setData({
+        openid: openid
+      })
+    } else {
+      openid = 0;
+    }
+    var id = that.data.id
     wx.request({
       url: app.globalData.base_url + '/details',
       data: {
-        openid: wx.getStorageSync('openid'),
+        openid: openid,
         id: id,
       },
-      success: function (res) {
+      success: function(res) {
+        console.log(res)
         that.setData({
           list: res.data.list,
+          isZan: res.data.zan,
         })
         if (res.data.message == "") {
           that.setData({
-            haveMes: false
+            haveMes: false,
           })
         } else {
           that.setData({
             haveMes: true,
             message: res.data.message,
-            isZan:res.data.zan
           })
         }
       }
     })
   },
-  clickZan:function(e){
+  preview: function(e) {
     var that = this;
-    var id = that.data.id
-    wx.request({
-      url: app.globalData.base_url + '/zan',
-      data: {
-        openid: wx.getStorageSync('openid'),
-        id: id,
-      },
-      success: function (res) {
-        that.setData({
-          isZan:1,
-          'list.praise': parseInt(that.data.list.praise)+1
+    var album_id = that.data.id
+    if (wx.getStorageSync('openid')) {
+      if (wx.getStorageSync('openid') === that.data.list.openid){
+        wx.navigateTo({
+          url: '/pages/webView/index?state=1&&album_id=' + album_id,
+        })
+      }else{
+        wx.navigateTo({
+          url: '/pages/webView/index?state=2&&album_id=' + album_id,
         })
       }
-    })
+    } else {
+      app.onLogin();
+      if (e.detail.errMsg == "getUserInfo:ok") {
+        wx.navigateTo({
+          url: '/pages/webView/index?state=2&&album_id=' + album_id,
+        })
+      }
+    }
   },
-  writeMes:function(){
-    var that=this;
-    var id=that.data.id
-    wx.navigateTo({
-      url: '/pages/message/index?id='+id,
-    })
+  goToAlbum: function(e) {
+    var that = this;
+    if (wx.getStorageSync('openid')) {
+      if (wx.getStorageSync('openid') === that.data.list.openid) {
+        var status=1;
+        wx.navigateTo({
+          url: '/pages/album/index?status=' + status,
+        })
+      } else {
+        var status = 2;
+        wx.navigateTo({
+          url: '/pages/album/index?status=' + status,
+        })
+      }
+    }else{
+      app.onLogin();
+    }
   },
-  makeMovie:function(){
-    wx.navigateTo({
-      url: '/pages/upPhotos/index',
-    })
+  clickZan: function(e) {
+    var that = this;
+    var id = that.data.id
+    if (wx.getStorageSync('openid')) {
+      wx.request({
+        url: app.globalData.base_url + '/zan',
+        data: {
+          openid: wx.getStorageSync('openid'),
+          id: id,
+        },
+        success: function(res) {
+          that.setData({
+            isZan: 1,
+            'list.praise': parseInt(that.data.list.praise) + 1
+          })
+        }
+      })
+    } else {
+      app.onLogin();
+      if (e.detail.errMsg == "getUserInfo:ok") {
+        wx.request({
+          url: app.globalData.base_url + '/zan',
+          data: {
+            openid: wx.getStorageSync('openid'),
+            id: id,
+          },
+          success: function(res) {
+            that.setData({
+              isZan: 1,
+              'list.praise': parseInt(that.data.list.praise) + 1
+            })
+          }
+        })
+      }
+    }
+
   },
-  reply:function(e){
-    console.log(e)
+  writeMes: function() {
+    var that = this;
+    var id = that.data.id
+    if (wx.getStorageSync('openid')) {
+      wx.navigateTo({
+        url: '/pages/message/index?id=' + id,
+      })
+    } else {
+      app.onLogin();
+      if (e.detail.errMsg == "getUserInfo:ok") {
+        wx.navigateTo({
+          url: '/pages/message/index?id=' + id,
+        })
+      }
+    }
+  },
+  makeMovie: function() {
+    if (wx.getStorageSync('openid')) {
+      wx.navigateTo({
+        url: '/pages/upPhotos/index',
+      })
+    } else {
+      app.onLogin();
+      if (e.detail.errMsg == "getUserInfo:ok") {
+        wx.navigateTo({
+          url: '/pages/upPhotos/index',
+        })
+      }
+    }
+
+  },
+  reply: function(e) {
     var that = this;
     var i = e.currentTarget.dataset.index;
     var msgid = e.currentTarget.dataset.msgid;
@@ -98,26 +186,41 @@ Page({
     message[i].bool = !message[i].bool;
     that.setData({
       message: message,
-      msgid:msgid
+      msgid: msgid
     })
   },
 
-  replyContent:function(e){
-    var that=this;
-    var id=that.data.id;
-    var msgid=that.data.msgid;
-    var reply=e.detail.value.reply;
+  replyContent: function(e) {
+    var that = this;
+    var id = that.data.id;
+    var msgid = that.data.msgid;
+    var reply = e.detail.value.reply;
     wx.request({
       url: app.globalData.base_url + '/reply',
       data: {
         openid: wx.getStorageSync('openid'),
         id: id,
-        message_id:msgid,
-        content:reply
+        message_id: msgid,
+        content: reply
       },
-      success: function (res) {
+      success: function(res) {
         that.onShow();
       }
     })
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function(res) {
+    var that = this;
+    var title = that.data.list.title;
+    var id = that.data.id;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+    }
+    return {
+      title: title,
+      path: '/pages/detail/index?id=' + id,
+    }
+  }
 })
