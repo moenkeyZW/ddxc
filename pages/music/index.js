@@ -19,20 +19,20 @@ Page({
     selectedId: '',
     moren_id: '',
     album_id: '',
-    grade:2,
+    grade: 2,
   },
   onLoad: function(options) {
     var that = this;
     var music_id = options.music_id;
     var moban_id = options.moban_id;
-    var grade=options.grade;
+    var grade = options.grade;
     if (options.album_id) {
       that.setData({
         album_id: options.album_id
       })
     }
     that.setData({
-      grade:grade,
+      grade: grade,
       music_id: music_id,
       moban_id: moban_id,
       selectedId: music_id,
@@ -73,8 +73,8 @@ Page({
     })
   },
   //监听页面自带的返回按钮
-  onUnload:function(){
-    var that=this;
+  onUnload: function() {
+    var that = this;
     innerAudioContext.pause();
     that.setData({
       showView: false
@@ -168,19 +168,27 @@ Page({
   },
   chooseMuban: function(e) {
     var that = this;
+    innerAudioContext.play();
     var id = e.currentTarget.dataset.index;
     var music_id = e.currentTarget.dataset.id;
     var src = that.data.music_list[id].url;
+    var clickId = that.data.clickId;
     innerAudioContext.src = src;
-    if (that.data.showView === true) {
+    if (clickId != id) {
+      innerAudioContext.destroy
       innerAudioContext.play();
       that.setData({
         showView: false
       })
-    } else {
+    } else if (that.data.showView === false) {
       innerAudioContext.pause();
       that.setData({
         showView: true
+      })
+    } else {
+      innerAudioContext.play();
+      that.setData({
+        showView: false
       })
     }
     that.setData({
@@ -197,7 +205,7 @@ Page({
     var album_id = that.data.album_id;
     var music_id = that.data.music_id;
     var moban_id = that.data.moban_id;
-    var grade=that.data.grade;
+    var grade = that.data.grade;
     let pages = getCurrentPages(); //当前页面
     let prevPage = pages[pages.length - 2]; //上一页面（prevPage 就是获取的上一个页面的JS里面所有pages的信息）
     if (prevPage.route == "pages/upPhotos/index") {
@@ -222,7 +230,7 @@ Page({
         },
         success: function(res) {
           wx.redirectTo({
-            url: '/pages/webView/index?state=4&album_id=' + album_id +'&&grade='+grade,
+            url: '/pages/webView/index?state=4&album_id=' + album_id + '&&grade=' + grade,
           })
         }
       })
