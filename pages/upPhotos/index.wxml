@@ -22,10 +22,11 @@
           </view>
           <image src='{{item}}' data-index="{{index}}" class='cho pdd'></image>
         </view>
-        <view bindtap='choose' hidden='{{img_arr.length>=20}}'>
+        <view bindtap='choose' hidden='{{img_arr.length>=32}}'>
           <image src='../../imgs/choose.png' class='cho'></image>
         </view>
       </view>
+      <view class='kong'></view>
       <view class='tj'>
         <button class='sub' bindtap='uploadImg'>提交制作</button>
       </view>
@@ -33,7 +34,7 @@
   </view>
   <view hidden='{{curIndex !== 1}}' style='display:{{display}};width:100%;'>
     <view class='anli shad'>
-      <view class='muban' bindtap='goMuban'>
+      <view class='muban' bindtap='goMuban'  data-grade="1">
         <view>
           <image src='../../imgs/muban.png' class='music'></image>
         </view>
@@ -45,11 +46,11 @@
           <image src='../../imgs/arrow.png' class='arrow'></image>
         </view>
       </view>
-      <view class='muban' bindtap='goMusic'>
+      <view class='muban' bindtap='goMusic' data-grade="2">
         <view>
           <image src='../../imgs/music.png' class='music'></image>
         </view>
-        <view>
+        <view >
           <text>当前音乐:</text>
           <text class='pad'>{{currently.music_name}}</text>
         </view>

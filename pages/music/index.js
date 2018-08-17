@@ -19,18 +19,20 @@ Page({
     selectedId: '',
     moren_id: '',
     album_id: '',
+    grade:2,
   },
   onLoad: function(options) {
-    console.log(options)
     var that = this;
     var music_id = options.music_id;
     var moban_id = options.moban_id;
+    var grade=options.grade;
     if (options.album_id) {
       that.setData({
         album_id: options.album_id
       })
     }
     that.setData({
+      grade:grade,
       music_id: music_id,
       moban_id: moban_id,
       selectedId: music_id,
@@ -68,6 +70,14 @@ Page({
           })
         }
       }
+    })
+  },
+  //监听页面自带的返回按钮
+  onUnload:function(){
+    var that=this;
+    innerAudioContext.pause();
+    that.setData({
+      showView: false
     })
   },
   hot: function() {
@@ -173,7 +183,6 @@ Page({
         showView: true
       })
     }
-
     that.setData({
       clickId: id,
       displays: 'block',
@@ -188,13 +197,14 @@ Page({
     var album_id = that.data.album_id;
     var music_id = that.data.music_id;
     var moban_id = that.data.moban_id;
+    var grade=that.data.grade;
     let pages = getCurrentPages(); //当前页面
     let prevPage = pages[pages.length - 2]; //上一页面（prevPage 就是获取的上一个页面的JS里面所有pages的信息）
-    console.log(prevPage)
     if (prevPage.route == "pages/upPhotos/index") {
       prevPage.setData({
         'currently.moban_id': moban_id,
         'currently.music_id': music_id,
+        grade: grade,
       })
       wx: wx.navigateBack({
         delta: 1,
@@ -211,8 +221,8 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          wx.reLaunch({
-            url: '/pages/webView/index?state=4&album_id=' + album_id,
+          wx.redirectTo({
+            url: '/pages/webView/index?state=4&album_id=' + album_id +'&&grade='+grade,
           })
         }
       })

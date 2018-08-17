@@ -14,6 +14,15 @@
 
 .fmyjt[plain] {
   border: none;
+  border-radius: 0;
+}
+.gomy{
+  width:180rpx;
+  height:48rpx;
+  position: absolute;
+  left:0;
+  top:10%;
+  z-index: 100
 }
 
 .play {
@@ -24,6 +33,7 @@
 .com {
   position: relative;
   top: 8rpx;
+  opacity:0.9;
 }
 
 .zan {
@@ -91,6 +101,7 @@
   width: 100%;
   height: auto;
   background: #fff;
+  box-shadow: 0px 4px 6px 0px rgba(51, 29, 26, 0.08);
 }
 
 .tit {
@@ -121,20 +132,27 @@
 }
 
 .share {
-  width: 32rpx;
-  height: 32rpx;
+  width: 40rpx;
+  height: 40rpx;
+  padding-right:10rpx;
+}
+.fxxk{
   position: relative;
-  top: 6rpx;
+  bottom:3rpx;
 }
-
+.fxx{
+  position: relative;
+  bottom:10rpx;
+}
 .aa {
-  margin: 20rpx 0 0 30rpx;
+  margin: 60rpx 0 0 30rpx;
 }
-
+.aas{
+   margin:20rpx 0 0 30rpx;
+}
 .bb {
   width: 530rpx;
   justify-content: space-between;
-  margin-top: 6rpx;
   border-bottom: 1rpx solid #e6e2e1;
 }
 
@@ -145,7 +163,6 @@
 .nickname {
   color: #333;
   font-size: 32rpx;
-  margin-bottom: 14rpx;
 }
 
 .date {
@@ -154,7 +171,7 @@
 }
 
 .enjoy {
-  color: #808080;
+  color: #808080 !important;
   font-size: 28rpx;
   padding: 0;
 }
@@ -167,7 +184,7 @@
   color: #666;
   font-size: 28rpx;
   margin: 14rpx 0 24rpx 161rpx;
-  width: 375rpx;
+  width: 530rpx;
 }
 
 .board {
@@ -175,6 +192,8 @@
   height: auto;
   background: #fff;
   margin: 20rpx 0 76rpx 0;
+  box-shadow:0px 4px 6px 0px rgba(51,29,26,0.08);
+  padding-bottom:76rpx;
 }
 
 .noBoard {
@@ -183,6 +202,7 @@
   background: #fff;
   margin: 20rpx 0 64rpx 0;
   position: relative;
+  box-shadow:0px 4px 6px 0px rgba(51,29,26,0.08);
 }
 
 .zwMes {
@@ -197,7 +217,7 @@
 .new {
   display: flex;
   justify-content: space-between;
-  margin: 34rpx 0 4rpx 0;
+  margin: 24rpx 0 4rpx 0;
 }
 
 .avas {
@@ -214,6 +234,7 @@
 .newMes {
   color: #333;
   margin-left: 32rpx;
+  align-self: center;
 }
 
 .write {
@@ -228,7 +249,7 @@
 
 .concrete {
   color: #666;
-  margin: 12rpx 0 54rpx 0;
+  margin: 12rpx 0 48rpx 0;
 }
 
 .reply {
@@ -274,7 +295,7 @@
 input {
   height: 28rpx;
   width: 400rpx;
-  padding: 15rpx 0 5rpx 22rpx;
+  padding: 16rpx 0 0 22rpx;
   color: #333;
   font-size: 28rpx;
 }
@@ -288,7 +309,5 @@ input {
   background: #fa7180;
   border-radius: 6rpx;
   font-size: 26rpx;
-  position: relative;
-  left: 220rpx;
-  top: 15rpx;
+  margin-right:0rpx;
 }

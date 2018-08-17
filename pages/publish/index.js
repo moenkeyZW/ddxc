@@ -14,6 +14,7 @@ Page({
     percent: 0,
     left: -2,
     id: '',
+  
   },
 
   /**
@@ -63,7 +64,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+  
   },
   pubPrev:function(){
     var that=this;
@@ -104,7 +105,7 @@ Page({
         },
         success: function(res) {
           wx.redirectTo({
-            url: '/pages/album/index',
+            url: '/pages/index/index',
           })
           wx.showToast({
             title: '发布成功',

@@ -8,6 +8,7 @@
   background:#fff;
   margin-top:20rpx;
   position: relative;
+  box-shadow:0px 4px 6px 0px rgba(51,29,26,0.08);
 }
 textarea{
   width:93%;
@@ -15,6 +16,7 @@ textarea{
   color:#333;
   font-size:28rpx;
   padding:14rpx 0 14rpx 30rpx;
+ 
 }
 .mes{
   color:#b3b3b3;

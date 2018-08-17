@@ -7,7 +7,8 @@ Page({
    */
   data: {
     t_length:0,
-    id:''
+    id:'',
+    disabled: false,
   },
 
   /**
@@ -20,12 +21,13 @@ Page({
     })
   },
 
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      disabled: false
+    })
   },
   bindText: function (e) {
     var t_text = e.detail.value.length;
@@ -34,9 +36,19 @@ Page({
     })
   },
   leaveWord:function(e){
-    console.log(e)
     var that=this;
     var message=e.detail.value.message;
+    if(message==""){
+      wx.showModal({
+        title: '提示',
+        content: '留言不能为空',
+        showCancel: false,
+      })
+      return
+    }
+    that.setData({
+      disabled: true
+    })
     var id=that.data.id;
     wx.request({
       url: app.globalData.base_url + '/message',

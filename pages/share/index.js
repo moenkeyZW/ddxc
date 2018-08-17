@@ -60,7 +60,7 @@ Page({
     return {
       title: title,
       imageUrl:cover,
-      path: '/pages/detail/index?id=' + id,
+      path: '/pages/detail/index?status=2&&id=' + id,
     }
   }
 

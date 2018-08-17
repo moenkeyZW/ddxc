@@ -21,6 +21,7 @@ Page({
       moban_name: '',
       music_name: '',
     },
+    grade: 0,
   },
 
   /**
@@ -47,6 +48,12 @@ Page({
         'currently.music_id': options.music_id
       })
     }
+    if(options.grade){
+      that.setData({
+        grade: grade
+      })
+    }
+
     wx.request({
       url: app.globalData.base_url + '/upload_img_list',
       data: {
@@ -83,6 +90,7 @@ Page({
   onShow: function() {
     const that = this
     var id = that.data.id;
+    var grade=that.data.grade;
     var moban_id = that.data.currently.moban_id;
     var music_id = that.data.currently.music_id;
     wx.request({
@@ -90,13 +98,15 @@ Page({
       data: {
         id: id,
         moban_id: moban_id,
-        music_id: music_id
+        music_id: music_id,
+        grade:grade,
       },
       method: 'GET',
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
+        console.log(res)
         that.setData({
           muban_list: res.data.rm_moban,
           currently: res.data.list,
@@ -121,19 +131,21 @@ Page({
     })
   },
 
-  goMuban: function() {
+  goMuban: function(e) {
     var that = this;
+    var grade=e.currentTarget.dataset.grade;
     var moban_id = that.data.currently.moban_id;
     wx.navigateTo({
-      url: '/pages/templet/index?moban_id=' + moban_id,
+      url: '/pages/templet/index?moban_id=' + moban_id+'&&grade='+grade,
     })
   },
-  goMusic: function() {
+  goMusic: function(e) {
     var that = this;
+    var grade = e.currentTarget.dataset.grade;
     var moban_id = that.data.currently.moban_id;
     var music_id = that.data.currently.music_id;
     wx.navigateTo({
-      url: '/pages/music/index?music_id=' + music_id + '&&moban_id=' + moban_id,
+      url: '/pages/music/index?music_id=' + music_id + '&&moban_id=' + moban_id+'&&grade='+grade,
     })
   },
   previewMuban: function(e) {
@@ -160,7 +172,7 @@ Page({
   choose: function() {
     var that = this
     wx.chooseImage({
-      count: 20,
+      count: 32,
       success: function(res) {
         that.setData({
           isHaveImg: false,
@@ -250,9 +262,11 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function(res) {
-        wx.redirectTo({
-          url: '/pages/publish/index',
-        })
+        if (res.data.res) {
+          wx.redirectTo({
+            url: '/pages/publish/index',
+          })
+        }
       }
     })
   },

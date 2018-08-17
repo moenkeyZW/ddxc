@@ -1,80 +1,92 @@
 <!--index.wxml-->
+<!--pages/album/index.wxml-->
 <view class="container">
   <view class='header'>
     <image src='../../imgs/bg.png' class='bg'></image>
-    <!-- <view class='avatar'> -->
-    <!-- <image src='../../imgs/wzj.png' class='av'></image> -->
-    <open-data type="userAvatarUrl" class='av'></open-data>
-
-    <!-- </view> -->
-    <!-- <view class='nickname'>王总监</view> -->
-    <open-data type="userNickName" class='nickname'></open-data>
+    <view>
+      <image src='{{userInfo.headimgurl}}' class='av'></image>
+    </view>
+    <view>
+      <text class='nickname'>{{userInfo.nickname}}</text>
+    </view>
+    <view wx:if="{{status==2}}" bindtap='goMy'>
+      <image src='../../imgs/goMy.png' class='gomy'></image>
+    </view>
   </view>
   <view wx:if="{{status===0}}">
     <view>
-      <image src='../../imgs/noMes.png' class='noMes'></image>
+      <image src='../../imgs/noAlbum.png' class='noMes'></image>
+    </view>
+    <view>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" plain='true' class='makeMoment'>立即制作</button>
     </view>
   </view>
-  <view wx:if="{{status===1}}" style='width:100%;'>
-    <view class='trend_list' wx:for="{{trend_list}}" wx:key="{{index}}" data-index="{{index}}">
-      <view>
-        <image src='{{item.headimgurl}}' class='ava'></image>
-      </view>
-      <view class='appraise'>
-        <view class='rw'>
-          <view class='name'>{{item.nickname}}
-            <text class='time pj'>{{item.type}}</text>
-          </view>
-          <view class='time sj'>{{item.create_time}}</view>
+  <view wx:if="{{status===1}}" style='width:100%'>
+    <view class='album_list shadow' wx:for="{{album_list}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='albumFm'>
+        <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' mode='aspectFill' bindtap='goDetail' data-id="{{item.id}}"></image>
+        <view class='bts'>
+          <image src='../../imgs/more.png' class='more' bindtap='moreOperate' data-index='{{index}}'></image>
         </view>
-        <view class='content'>{{item.content}}</view>
-        <view class='detail' bindtap='goDetail' data-id="{{item.album_id}}">
-          <view>
-            <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='fm'></image>
+        <view class="dialog " hidden='{{item.bool}}'>
+          <view class='dikuang'>
+            <image src='../../imgs/kuang.png' class='kuang'></image>
+            <view class='cz' bindtap='goUpPhoto' data-id='{{item.id}}'>
+              <image src='../../imgs/redo.png' class='smtb'></image>
+              <text class='zt'>重制</text>
+            </view>
+            <view class='sc' bindtap='deleteItem' data-id='{{item.id}}' data-index='{{index}}'>
+              <image src='../../imgs/del.png' class='smtb'></image>
+              <text class='zt'>删除</text>
+            </view>
+            <view class='fx'>
+              <button open-type='share' class='fxBt' plain='true' data-id='{{item.id}}' data-cover="https://www.qlgbp.cn/Public{{item.cover}}" data-title="{{item.title}}" data-index='{{index}}'>
+                <image src='../../imgs/share.png' class='smtb'></image>
+                <text class='zt'>分享</text>
+              </button>
+            </view>
           </view>
-          <view class='title'>{{item.title}}</view>
         </view>
-      </view>
-    </view>
-    <view class='kong'></view>
-  </view>
-  <view wx:if="{{status===2}}" style='width:100%;'>
-     <view class='trend_list' wx:for="{{self_list}}" wx:key="{{index}}" data-index="{{index}}">
-      <view>
-        <image src='{{item.headimgurl}}' class='ava'></image>
-      </view>
-      <view class='appraise'>
-        <view class='rw'>
-          <view class='name'>{{item.nickname}}
-            <text class='time pj'>{{item.type}}</text>
-          </view>
-          <view class='time sj'>{{item.create_time}}</view>
-        </view>
-        <view class='content'>{{item.content}}</view>
-        <view class='detail' bindtap='goDetail' data-id="{{item.album_id}}">
-          <view>
-            <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='fm'></image>
-          </view>
-          <view class='title'>{{item.title}}</view>
+        <view class='bt'>
+          <view class='js'>{{item.title}}</view>
         </view>
       </view>
+      <view class='time mf'>{{item.timeline}}</view>
     </view>
     <view class='kong'></view>
   </view>
-  <view class='tarbar'>
+  <view wx:if="{{status===2}}" style='width:100%'>
+    <view class='tab'>
+      <view class='comms'>
+        <text class='yj'>影集</text>
+      </view>
+      <view class='zx'></view>
+      <view class='comms' bindtap='goDt'>动态</view>
+    </view>
+    <view class='album_list shadow' wx:for="{{other_list}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='albumFm'>
+        <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' mode='aspectFill' bindtap='goDetail' data-id="{{item.id}}"></image>
+        <view class='bt'>
+          <view class='js'>{{item.title}}</view>
+        </view>
+      </view>
+      <view class='time mf'>{{item.timeline}}</view>
+    </view>
+    <view class='kong'></view>
+  </view>
+  <view class='tarbar' hidden='{{status==2}}'>
     <view class='ic lf'>
-      <image src='../../imgs/trends_selected.png' class='icon'></image>
-      <view class='icon_text trend'>动态</view>
+      <image src='../../imgs/album_selected.png' class='icon'></image>
+      <view class='icon_text trend'>影集</view>
     </view>
-
     <view>
       <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='make'>
         <image src='../../imgs/icon_make.png' class='jia'></image>
       </button>
     </view>
-    <view class='ic rg' bindtap='goAlbum'>
-      <image src='../../imgs/album.png' class='icon'></image>
-      <view class='icon_text'>影集</view>
+    <view class='ic rg' bindtap='goTrend'>
+      <image src='../../imgs/trends.png' class='icon'></image>
+      <view class='icon_text '>动态</view>
     </view>
   </view>
 </view>

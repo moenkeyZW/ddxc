@@ -1,7 +1,7 @@
 <!--pages/publish/index.wxml-->
 <view class='container'>
   <view class='fmyj' bindtap='pubPrev'>
-    <image src='{{cover}}' class='fmyjt'></image>
+    <image src='{{cover}}' mode='aspectFill' class='fmyjt'></image>
     <view class='bofang' wx:if="{{!showDis}}">
       <image src='../../imgs/play_sm.png' class='play'></image>
     </view>
@@ -15,7 +15,7 @@
   <form class='describe' bindsubmit="publish">
     <view class='wrapper'>
       <label class='title'>标题</label>
-      <input placeholder='输入影集标题' placeholder-class='pub' class='pubs' name='title' bindconfirm='inputTitle' />
+      <input placeholder='输入影集标题' placeholder-class='pub' value='{{title}}' class='pubs' name='title' bindconfirm='inputTitle' />
     </view>
     <view class='detail'>
       <view class='title'>描述</view>
@@ -23,7 +23,7 @@
       <view class='figure'>{{t_length}}/88</view>
     </view>
     <view>
-      <button form-type="submit" class='fb'>发布</button>
+      <button form-type="submit" class='fb' >发布</button>
     </view>
   </form>
 

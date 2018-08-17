@@ -11,7 +11,7 @@
 
 .tab .tabBtn {
   color: #333;
-  padding: 25rpx 0;
+  padding: 20rpx 0;
   text-align: center;
   width: 148rpx;
   font-size: 32rpx;
@@ -19,7 +19,9 @@
 
 .tab .tabBtn.choosed {
   color: #fa7180;
-  border-bottom: 6rpx solid #fa7180;
+  border-bottom: 6rpx solid #fa7180 ;
+  border-bottom-left-radius: 3rpx;
+  border-bottom-right-radius: 3rpx;
 }
 
 .photo {
@@ -59,7 +61,7 @@
 .upImg {
   display: flex;
   flex-wrap: wrap;
-  margin:60rpx 0 0 30rpx;
+  margin: 60rpx 0 0 30rpx;
 }
 
 .cover {
@@ -147,21 +149,21 @@
   height: 36rpx;
 }
 
-.pad{
-  padding-left:30rpx;
+.pad {
+  padding-left: 30rpx;
 }
 
 .jt {
   flex: 1;
   text-align: right;
-  padding-top:10rpx;
+  padding-top: 10rpx;
 }
 
 .hotMuban {
   width: calc(100% - 60rpx);
   height: auto;
   background: #fff;
-  margin-left:30rpx;
+  margin-left: 30rpx;
 }
 
 .xian {
@@ -173,7 +175,7 @@
 
 .shad {
   border-radius: 10px;
-  box-shadow: 4px 0px 6px rgba(51, 29, 25, 0.08);
+  box-shadow: 0px 0px 6px rgba(51, 29, 25, 0.08);
 }
 
 .head {
@@ -207,6 +209,7 @@
 .mbfm {
   width: 120rpx;
   height: 120rpx;
+  border-radius: 4rpx;
 }
 
 .jz {
@@ -237,7 +240,6 @@
   border-bottom: 1rpx solid #ebebeb;
 }
 
-
 .biao {
   padding-top: 14rpx;
   font-size: 32rpx;
@@ -248,8 +250,8 @@
   padding: 14rpx 0 50rpx 0;
 }
 
-.kong{
-  width:100%;
-  height:104rpx;
-  margin-top:30rpx;
+.kong {
+  width: 100%;
+  height: 104rpx;
+  margin-top: 30rpx;
 }

@@ -1,8 +1,9 @@
 <!--pages/detail/index.wxml-->
+
 <view class='container'>
   <view class='fmyj'>
     <button open-type="getUserInfo" bindgetuserinfo="preview" plain='true' class='fmyjt'>
-      <image src="{{list.cover}}" class='fmyjt'></image>
+      <image src="{{list.cover}}" mode='aspectFill' class='fmyjt'></image>
       <view class='bofang'>
         <image src='../../imgs/play_sm.png' class='play'></image>
       </view>
@@ -16,7 +17,6 @@
           <image src='../../imgs/look.png' class='com look'></image>
           <text class='num'>{{list.view}}</text>
         </view>
-
         <view wx:if="{{isZan===1}}">
           <image src='../../imgs/zan_selected.png' class='com zan'></image>
           <text class='num'>{{list.praise}}</text>
@@ -29,10 +29,13 @@
         </view>
       </view>
     </view>
+     <view wx:if="{{status==2}}" bindtap='goMy'>
+      <image src='../../imgs/goMy.png' class='gomy'></image>
+    </view>
   </view>
   <view class='details'>
     <view class='tit'>{{list.title}}</view>
-    <view class='dis aa'>
+    <view class='dis aas'>
       <view>
         <button open-type="getUserInfo" bindgetuserinfo="goToAlbum" plain='true' class='avaBtn'>
           <image src='{{list.headimgurl}}' class='ava'></image>
@@ -43,10 +46,11 @@
           <view class='nickname'>{{list.nickname}}</view>
           <view class='date'>{{list.timeline}}</view>
         </view>
-        <view wx:if="{{openid}}">
+        <view wx:if="{{openid}}" class='fxxk'>
           <button open-type='share' class='enjoy' plain='true'>
-            <image src='../../imgs/share.png' class='share'></image>
-            分享</button>
+            <image src='../../imgs/fx.png' class='share'></image>
+            <text class='fxx'>分享</text>
+          </button>
         </view>
       </view>
     </view>
@@ -71,7 +75,7 @@
               <view class='date'>{{item.create_time}}</view>
               <view class='dx concrete'>{{item.content}}</view>
             </view>
-            <view class='pl' bindtap='reply' data-msgid="{{item.id}}" data-index='{{index}}' hidden='{{item.reply!==null}}'>
+            <view class='pl' bindtap='reply' data-msgid="{{item.id}}" data-index='{{index}}' hidden='{{item.reply!==null ||equ}}'>
               <image src='../../imgs/reply.png' class='reply'></image>
             </view>
           </view>
@@ -87,7 +91,7 @@
           <view class="dialog" hidden="{{item.bool}}">
             <form bindsubmit="replyContent">
               <input name='reply' />
-              <view>
+              <view style='margin-top:24rpx'>
                 <button formType="submit" class='hfpl'>回复</button>
               </view>
             </form>
@@ -100,7 +104,7 @@
     <view class='noBoard'>
       <view class='new'>
         <view class='dx newMes'>最新留言</view>
-        <view>
+        <view class='xly'>
           <button open-type="getUserInfo" plain='true' bindgetuserinfo="writeMes" class='dx write'>写留言</button>
         </view>
       </view>

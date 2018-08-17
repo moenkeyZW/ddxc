@@ -13,6 +13,8 @@ Page({
     msgid: '',
     isZan: '',
     openid: '',
+    equ:'',
+    status:'',
   },
 
   /**
@@ -24,6 +26,12 @@ Page({
     that.setData({
       id: id
     })
+    if(options.status){
+      that.setData({
+        status:options.status
+      })
+    }
+    console.log(that.data.status)
   },
   onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -57,6 +65,15 @@ Page({
           list: res.data.list,
           isZan: res.data.zan,
         })
+        if (wx.getStorageSync('openid') === that.data.list.openid){
+          that.setData({
+            equ:false
+          })
+        }else{
+          that.setData({
+            equ: true
+          })
+        }
         if (res.data.message == "") {
           that.setData({
             haveMes: false,
@@ -85,25 +102,27 @@ Page({
       }
     } else {
       app.onLogin();
-      if (e.detail.errMsg == "getUserInfo:ok") {
-        wx.navigateTo({
-          url: '/pages/webView/index?state=2&&album_id=' + album_id,
-        })
-      }
     }
   },
+  goMy: function () {
+    wx.reLaunch({
+      url: '/pages/index/index?status=1',
+    })
+  },
+  // 点头像
   goToAlbum: function(e) {
     var that = this;
+    var openid = that.data.list.openid;
     if (wx.getStorageSync('openid')) {
-      if (wx.getStorageSync('openid') === that.data.list.openid) {
+      if (wx.getStorageSync('openid') === openid) {
         var status=1;
-        wx.navigateTo({
-          url: '/pages/album/index?status=' + status,
+        wx.redirectTo({
+          url: '/pages/index/index?status=' + status + '&openid=' + openid,
         })
       } else {
         var status = 2;
         wx.navigateTo({
-          url: '/pages/album/index?status=' + status,
+          url: '/pages/index/index?status=' + status + '&openid=' + openid
         })
       }
     }else{
@@ -147,7 +166,7 @@ Page({
     }
 
   },
-  writeMes: function() {
+  writeMes: function(e) {
     var that = this;
     var id = that.data.id
     if (wx.getStorageSync('openid')) {
@@ -163,7 +182,7 @@ Page({
       }
     }
   },
-  makeMovie: function() {
+  makeMovie: function(e) {
     if (wx.getStorageSync('openid')) {
       wx.navigateTo({
         url: '/pages/upPhotos/index',
@@ -214,13 +233,15 @@ Page({
   onShareAppMessage: function(res) {
     var that = this;
     var title = that.data.list.title;
+    var cover=that.data.list.cover;
     var id = that.data.id;
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
     return {
       title: title,
-      path: '/pages/detail/index?id=' + id,
+      imageUrl: cover,
+      path: '/pages/detail/index?status=2&&id=' + id,
     }
   }
 })

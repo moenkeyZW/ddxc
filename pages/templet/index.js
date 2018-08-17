@@ -11,11 +11,14 @@ Page({
     showHot:true,
     selectedId:'',
     album_id:'',
+    grade:1,
   },
   onLoad: function (options) {
     var that=this;
     var moban_id=options.moban_id;
+    var grade = options.grade;
     that.setData({
+      grade:grade,
       moban_id:moban_id,
       selectedId:moban_id
     })
@@ -100,15 +103,17 @@ Page({
   },
   saveFile:function(){
     var that=this;
+    var grade=that.data.grade;
     var moban_id=that.data.moban_id;
     var album_id = that.data.album_id;
     let pages = getCurrentPages();//当前页面
-    let prevPage = pages[pages.length - 2]; //上一页面（prevPage 就是获取的上一个页面的JS里面所有pages的信息）
-    if (prevPage.route == "pages/upPhotos/index") {
+    let prevPage = pages[pages.length - 2]; //上一页面（prevPage 就是获取的上一个页面的JS里面所有pages的信息
+    if (prevPage.route == "pages/upPhotos/index" ) {
       prevPage.setData({
         'currently.moban_id': moban_id,
+        grade:grade,
       })
-      wx: wx.navigateBack({
+      wx.navigateBack({
         delta: 1,
       })
     } else {
@@ -123,8 +128,8 @@ Page({
           'content-type': 'application/json'
         },
         success: function (res) {
-          wx.reLaunch({
-            url: '/pages/webView/index?state=4&album_id=' + album_id,
+          wx.redirectTo({
+            url: '/pages/webView/index?state=4&album_id=' + album_id + '&&grade=' + grade,
           })
         }
       })
