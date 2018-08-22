@@ -20,10 +20,11 @@
           <view class='delete' catchtap="deleteImg" data-index="{{index}}">
             <image src='../../imgs/x.png' class='x'></image>
           </view>
-          <image src='{{item}}' data-index="{{index}}" class='cho pdd'></image>
+          <image src='{{item}}' data-index="{{index}}" class='cho pdd' wx:if="{{index<=35}}"></image>
         </view>
-        <view bindtap='choose' hidden='{{img_arr.length>=32}}'>
+        <view bindtap='choose' hidden='{{img_arr.length>=36}}' style='position:relative;'>
           <image src='../../imgs/choose.png' class='cho'></image>
+          <text class='surplus'>{{img_arr.length}}/36</text>
         </view>
       </view>
       <view class='kong'></view>

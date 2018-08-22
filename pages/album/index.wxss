@@ -132,14 +132,14 @@
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 136rpx;
+  top: 150rpx;
 }
 
 .nickname {
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  bottom: 10rpx;
+  bottom: -2rpx;
   color: #fff;
   font-size: 36rpx;
 }

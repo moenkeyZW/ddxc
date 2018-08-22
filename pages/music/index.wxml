@@ -37,7 +37,7 @@
         <view style='display:{{displays}}'>
           <image src='../../imgs/{{showView?"pause":"broadcast"}}.png' class='broadcast'></image>
         </view>
-        <view class='intro'  >
+        <view class='intro' >
           <view>
             <view class='biao' style='color:#FA7180'>{{item.name}}</view>
             <view class='gm' style='color:#FABBC3'>{{item.author}}</view>

@@ -1,12 +1,8 @@
 <view class="container">
   <view class='header'>
     <image src='../../imgs/bg.png' class='bg'></image>
-    <view>
-      <image src='{{userInfo.headimgurl}}' class='av'></image>
-    </view>
-    <view>
-      <text class='nickname'>{{userInfo.nickname}}</text>
-    </view>
+    <open-data type="userAvatarUrl" class='av'></open-data>
+    <open-data type="userNickName" class='nickname'></open-data>
     <view wx:if="{{status==2}}" bindtap='goMy'>
       <image src='../../imgs/goMy.png' class='gomy'></image>
     </view>

@@ -172,7 +172,7 @@ Page({
   choose: function() {
     var that = this
     wx.chooseImage({
-      count: 32,
+      count: 9,
       success: function(res) {
         that.setData({
           isHaveImg: false,
@@ -193,6 +193,9 @@ Page({
             },
             success: function(res) {
               that.data.sort = res.data.split(',').concat(that.data.sort);
+              if (that.data.sort.length >= 72) {
+                that.data.sort = that.data.sort.slice(0, 72)
+              }
               that.setData({
                 sort: that.data.sort
               })
@@ -204,13 +207,23 @@ Page({
   },
   // 删除图片
   deleteImg: function(e) {
-    var that = this
+    var that = this;
+    var sort = that.data.sort;
     var img_arr = that.data.img_arr;
-    var upImg = that.data.upImg;
+    var upImg=that.data.upImg;
     var remakeImg = that.data.remakeImg;
     var index = e.currentTarget.dataset.index;
+    if (img_arr.length >= 35) {
+      img_arr = img_arr.slice(0, 35)
+    }
+
+    for (var j = 0; j < sort.length; j++) {
+      if(sort[j]==index){
+        sort.splice(j, 2);
+      }
+    }
+
     img_arr.splice(index, 1);
-    upImg.splice(index, 1);
     remakeImg.splice(index, 1);
     if (img_arr.length === 0) {
       that.setData({
@@ -218,8 +231,8 @@ Page({
       })
     }
     that.setData({
+      sort: sort,
       img_arr: img_arr,
-      upImg: upImg,
       remakeImg: remakeImg
     });
   },
@@ -239,14 +252,17 @@ Page({
       })
       return
     }
-    for (var j = 0; j < sort.length / 2; j++) {
+
+    for (var j = 0; j < sort.length; j++) {
       for (var i = 0; i < sort.length; i++) {
         if (sort[i] == j) {
           upImg.push('/UploadWechat/' + sort[i + 1])
         }
       }
     }
+    
     var imgUrl = that.data.remakeImg.concat(upImg).join(',');
+
     var moban_id = that.data.currently.moban_id;
     var music_id = that.data.currently.music_id;
     wx.request({

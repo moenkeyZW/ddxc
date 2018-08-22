@@ -255,3 +255,9 @@
   height: 104rpx;
   margin-top: 30rpx;
 }
+.surplus{
+  position: absolute;
+  bottom:12rpx;
+  right:6rpx;
+  font-size:20rpx;
+}

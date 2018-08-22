@@ -14,7 +14,7 @@ Page({
     percent: 0,
     left: -2,
     id: '',
-  
+    nickname: '',
   },
 
   /**
@@ -44,17 +44,18 @@ Page({
       data: {
         openid: wx.getStorageSync('openid'),
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         that.setData({
           id: res.data.list.id,
-          cover: res.data.list.cover
+          cover: res.data.list.cover,
+          nickname: res.data.list.nickname,
         })
       }
     })
   },
 
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.onShow(); // 刷新页面
     wx.hideNavigationBarLoading() //完成停止加载
@@ -64,13 +65,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-  
+
   },
-  pubPrev:function(){
-    var that=this;
-    var album_id=that.data.id;
+  pubPrev: function() {
+    var that = this;
+    var album_id = that.data.id;
     wx.navigateTo({
-      url: '/pages/webView/index?state=4&&album_id='+album_id,
+      url: '/pages/webView/index?state=4&&album_id=' + album_id,
     })
   },
   bindText: function(e) {
@@ -87,13 +88,18 @@ Page({
     const id = that.data.id;
     var title = e.detail.value.title;
     if (that.data.percent >= 100) {
-      if (e.detail.value.title === "") {
-        wx.showModal({
-          title: '提示',
-          content: '标题未填写',
-          showCancel: false,
-        })
-        return
+      // if (e.detail.value.title === "") {
+      //   wx.showModal({
+      //     title: '提示',
+      //     content: '标题未填写',
+      //     showCancel: false,
+      //   })
+      //   return
+      // }
+      if (title !== "") {
+        title = e.detail.value.title
+      }else{
+        title=that.data.nickname+"的影集"
       }
       var depict = e.detail.value.message;
       wx.request({

@@ -1,9 +1,9 @@
 <!--pages/publish/index.wxml-->
 <view class='container'>
-  <view class='fmyj' bindtap='pubPrev'>
+  <view class='fmyj' >
     <image src='{{cover}}' mode='aspectFill' class='fmyjt'></image>
-    <view class='bofang' wx:if="{{!showDis}}">
-      <image src='../../imgs/play_sm.png' class='play'></image>
+    <view class='bofang' wx:if="{{!showDis}}" bindtap='pubPrev'>
+      <image src='../../imgs/play_sm.png' class='play' ></image>
     </view>
     <view class='progress' wx:if="{{showDis}}">
       <progress activeColor='#FA7180'backgroundColor='#fff' active-mode='forwards'  percent="{{percent}}" style='border-radius:100rpx;overflow:hidden'/>
@@ -15,7 +15,7 @@
   <form class='describe' bindsubmit="publish">
     <view class='wrapper'>
       <label class='title'>标题</label>
-      <input placeholder='输入影集标题' placeholder-class='pub' value='{{title}}' class='pubs' name='title' bindconfirm='inputTitle' />
+      <input placeholder='{{nickname}}的影集' placeholder-class='pub' value='{{title}}' class='pubs' name='title' bindconfirm='inputTitle' />
     </view>
     <view class='detail'>
       <view class='title'>描述</view>
