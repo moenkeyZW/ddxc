@@ -232,14 +232,13 @@ Page({
    */
   onShareAppMessage: function(res) {
     var that = this;
-    var title = that.data.list.title;
     var cover=that.data.list.cover;
     var id = that.data.id;
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
     return {
-      title: title,
+      title: '我发布了一个精美相册，快来打开看看吧！',
       imageUrl: cover,
       path: '/pages/detail/index?status=2&&id=' + id,
     }

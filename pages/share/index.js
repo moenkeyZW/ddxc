@@ -7,7 +7,6 @@ Page({
    */
   data: {
     album_id:'',
-    title:'',
     cover:'',
   },
 
@@ -39,7 +38,7 @@ Page({
       success: function (res) {
        console.log(res)
        that.setData({
-         title:res.data.data.title,
+        //  title:res.data.data.title,
          cover:res.data.data.cover,
        })
       }
@@ -51,14 +50,14 @@ Page({
    */
   onShareAppMessage: function (res) {
     var that = this;
-    var title = that.data.title;
+    // var title = that.data.title;
     var cover=that.data.cover;
     var id = that.data.album_id;
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
     return {
-      title: title,
+      title: "我发布了一个精美相册，快来打开看看吧！",
       imageUrl:cover,
       path: '/pages/detail/index?status=2&&id=' + id,
     }

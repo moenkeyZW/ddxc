@@ -24,7 +24,7 @@
       </view>
     </view>
   </view>
-  <view class='byoMusic shad' bindtap='moren' data-id="{{moren_id}}">
+  <view class='byoMusic shad' bindtap='moren' data-id="{{moren_id}}" hidden='{{noMoban}}'>
     <view style='color:{{cor}}'>
       <text style='padding-left:30rpx;'>模板自带音乐：</text>
       <text>{{music_name}}</text>

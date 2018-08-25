@@ -90,8 +90,8 @@
 }
 
 .cho {
-  width: 168rpx;
-  height: 168rpx;
+  width: 166rpx;
+  height: 166rpx;
   border-radius: 6rpx;
 }
 
@@ -259,5 +259,6 @@
   position: absolute;
   bottom:12rpx;
   right:6rpx;
-  font-size:20rpx;
+  color:#999;
+  font-size:24rpx;
 }

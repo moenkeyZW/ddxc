@@ -22,6 +22,7 @@ Page({
       music_name: '',
     },
     grade: 0,
+    album_id:0,
   },
 
   /**
@@ -48,9 +49,9 @@ Page({
         'currently.music_id': options.music_id
       })
     }
-    if(options.grade){
+    if (options.grade) {
       that.setData({
-        grade: grade
+        grade: options.grade
       })
     }
 
@@ -84,13 +85,19 @@ Page({
       }
     })
   },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.onShow(); // 刷新页面
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
     const that = this
     var id = that.data.id;
-    var grade=that.data.grade;
+    var grade = that.data.grade;
     var moban_id = that.data.currently.moban_id;
     var music_id = that.data.currently.music_id;
     wx.request({
@@ -99,7 +106,7 @@ Page({
         id: id,
         moban_id: moban_id,
         music_id: music_id,
-        grade:grade,
+        grade: grade,
       },
       method: 'GET',
       header: {
@@ -110,8 +117,13 @@ Page({
         that.setData({
           muban_list: res.data.rm_moban,
           currently: res.data.list,
-          clickId: res.data.list.moban_id
+        
         })
+        if(res.data.list.moban_id!=0){
+          that.setData({
+            clickId: res.data.list.moban_id
+          })
+        }
       }
     })
   },
@@ -133,10 +145,10 @@ Page({
 
   goMuban: function(e) {
     var that = this;
-    var grade=e.currentTarget.dataset.grade;
+    var grade = e.currentTarget.dataset.grade;
     var moban_id = that.data.currently.moban_id;
     wx.navigateTo({
-      url: '/pages/templet/index?moban_id=' + moban_id+'&&grade='+grade,
+      url: '/pages/templet/index?moban_id=' + moban_id + '&&grade=' + grade,
     })
   },
   goMusic: function(e) {
@@ -145,13 +157,15 @@ Page({
     var moban_id = that.data.currently.moban_id;
     var music_id = that.data.currently.music_id;
     wx.navigateTo({
-      url: '/pages/music/index?music_id=' + music_id + '&&moban_id=' + moban_id+'&&grade='+grade,
+      url: '/pages/music/index?music_id=' + music_id + '&&moban_id=' + moban_id + '&&grade=' + grade,
     })
   },
   previewMuban: function(e) {
+    var that=this;
     var moban_id = e.currentTarget.dataset.id;
+    var album_id = that.data.album_id;
     wx.navigateTo({
-      url: '/pages/webView/index?state=3&&moban_id=' + moban_id,
+      url: '/pages/webView/index?state=3&&moban_id=' + moban_id + '&&album_id=' + album_id,
     })
   },
   chooseMuban: function(e) {
@@ -210,7 +224,7 @@ Page({
     var that = this;
     var sort = that.data.sort;
     var img_arr = that.data.img_arr;
-    var upImg=that.data.upImg;
+    var upImg = that.data.upImg;
     var remakeImg = that.data.remakeImg;
     var index = e.currentTarget.dataset.index;
     if (img_arr.length >= 35) {
@@ -218,7 +232,7 @@ Page({
     }
 
     for (var j = 0; j < sort.length; j++) {
-      if(sort[j]==index){
+      if (sort[j] == index) {
         sort.splice(j, 2);
       }
     }
@@ -244,11 +258,30 @@ Page({
     var img_arr = that.data.img_arr;
     var upImg = that.data.upImg;
     if (img_arr == "") {
-      wx.showToast({
-        title: '图片不能为空',
-        icon: 'success',
-        duration: 1500,
-        mask: true,
+      wx.showModal({
+        title: '提示',
+        content: '上传照片后才能制作影集',
+        showCancel:false,
+        success: function (res) {
+          
+        }
+      })
+      return
+    }
+    var moban_id = that.data.currently.moban_id;
+    if (moban_id==0){
+      wx.showModal({
+        title: '提示',
+        content: '选择模板和音乐后才能制作影集',
+        showCancel: false,
+        confirmText:'请选择',
+        success: function (res) {
+          if (res.confirm) {
+            that.setData({
+              curIndex: 1
+            })
+          }
+        }
       })
       return
     }
@@ -260,9 +293,8 @@ Page({
         }
       }
     }
-    
-    var imgUrl = that.data.remakeImg.concat(upImg).join(',');
 
+    var imgUrl = that.data.remakeImg.concat(upImg).join(',');
     var moban_id = that.data.currently.moban_id;
     var music_id = that.data.currently.music_id;
     wx.request({

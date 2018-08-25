@@ -15,7 +15,7 @@
   <form class='describe' bindsubmit="publish">
     <view class='wrapper'>
       <label class='title'>标题</label>
-      <input placeholder='{{nickname}}的影集' placeholder-class='pub' value='{{title}}' class='pubs' name='title' bindconfirm='inputTitle' />
+      <input placeholder='{{nickname}}的精美相册' placeholder-class='pub' value='{{title}}' class='pubs' name='title' bindconfirm='inputTitle' />
     </view>
     <view class='detail'>
       <view class='title'>描述</view>

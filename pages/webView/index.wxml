@@ -1,2 +1,4 @@
 <!--pages/webView/index.wxml-->
-<web-view src='{{webviewUrl}}'></web-view>
+<view class='container'>
+  <web-view src='{{webviewUrl}}'></web-view>
+</view>

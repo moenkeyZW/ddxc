@@ -99,7 +99,7 @@ Page({
       if (title !== "") {
         title = e.detail.value.title
       }else{
-        title=that.data.nickname+"的影集"
+        title = that.data.nickname +"的精美相册"
       }
       var depict = e.detail.value.message;
       wx.request({

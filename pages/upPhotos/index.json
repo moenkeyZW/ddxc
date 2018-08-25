@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "制作影集"
+  "navigationBarTitleText": "制作影集",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": true
 }

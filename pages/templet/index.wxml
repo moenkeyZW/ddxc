@@ -21,7 +21,7 @@
   </view>
   <view class='hotMuban shad'>
     <view class='first' wx:for="{{hot_list}}" wx:key="{{index}}" data-index="{{index}}" >
-      <view class='tou' bindtap='previewMuban' data-id='{{item.id}}'>
+      <view class='tou' bindtap='previewMuban' data-id='{{item.id}}' >
         <image src='https://www.qlgbp.cn/Public{{item.cover}}'  class='mbfm'></image>
         <view class='jz'>
           <image src='../../imgs/play.png' class='play'></image>
@@ -49,6 +49,6 @@
   </view>
   <view class='kong'></view>
   <view class='tj'>
-    <button class='sub' bindtap='saveFile'>保存</button>
+    <button class='sub' bindtap='saveFile'>确认使用</button>
   </view>
 </view>

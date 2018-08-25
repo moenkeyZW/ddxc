@@ -20,6 +20,7 @@ Page({
     moren_id: '',
     album_id: '',
     grade: 2,
+    noMoban:'',
   },
   onLoad: function(options) {
     var that = this;
@@ -56,10 +57,23 @@ Page({
         console.log(res)
         that.setData({
           clickId: -1,
-          music_name: res.data.moban_music.music_name,
           music_list: res.data.remen,
-          moren_id: res.data.moban_music.music_id,
+          
         })
+        if(res.data.moban_music.music_id !=0){
+          that.setData({
+            music_name: res.data.moban_music.music_name,
+            moren_id: res.data.moban_music.music_id,
+            noMoban:false
+          })
+        }else{
+          that.setData({
+            music_name: res.data.select_music.music_name,
+            moren_id: res.data.select_music.music_id,
+            noMoban: true,
+          })
+        
+        }
         if (res.data.select_music.music_id == res.data.moban_music.music_id) {
           return
         } else {
@@ -96,6 +110,7 @@ Page({
   moren: function(e) {
     var that = this;
     var music_id = e.currentTarget.dataset.id;
+    innerAudioContext.pause();
     that.setData({
       selectedId: -1,
       music_id: music_id,
@@ -169,6 +184,7 @@ Page({
   chooseMuban: function(e) {
     var that = this;
     innerAudioContext.play();
+    innerAudioContext.obeyMuteSwitch=false;
     var id = e.currentTarget.dataset.index;
     var music_id = e.currentTarget.dataset.id;
     var src = that.data.music_list[id].url;
