@@ -7,7 +7,7 @@ Page({
    */
   data: {
     haveAlbum: true,
-    status: 1,
+    status: 0,
     album_list: '',
     other_list: '',
     openid: '',
@@ -121,7 +121,6 @@ Page({
     })
   },
   deleteItem: function(e) {
-    console.log(e)
     var that = this;
     var album_list = that.data.album_list;
     var id = e.currentTarget.dataset.id;
@@ -141,6 +140,7 @@ Page({
               that.setData({
                 album_list: album_list,
               });
+              that.onShow();
             }
           })
         } else if (res.cancel) {

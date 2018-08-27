@@ -8,20 +8,27 @@
         <image src='../../imgs/play_sm.png' class='play'></image>
       </view>
     </button>
+    <view wx:if="{{status==2}}" bindtap='goMy'>
+      <image src='../../imgs/goMy.png' class='gomy'></image>
+    </view>
+  </view>
+  <view class='details'>
     <view class='ty'>
       <view>
         <button open-type="getUserInfo" bindgetuserinfo="makeMovie" class='start'>制作影集</button>
       </view>
       <view class='xq'>
-        <view>
+        <view class='yj'>
           <image src='../../imgs/look.png' class='com look'></image>
           <text class='num'>{{list.view}}</text>
         </view>
-        <view wx:if="{{isZan===1}}">
-          <image src='../../imgs/zan_selected.png' class='com zan'></image>
-          <text class='num'>{{list.praise}}</text>
+        <view wx:if="{{isZan===1}}" class='shou'>
+          <button plain='true' class='zanBtn'>
+            <image src='../../imgs/zan_selected.png' class='com zan'></image>
+            <text class='num'>{{list.praise}}</text>
+          </button>
         </view>
-        <view wx:else>
+        <view wx:else class="shou">
           <button open-type="getUserInfo" bindgetuserinfo="clickZan" plain='true' class='zanBtn'>
             <image src='../../imgs/zan.png' class='com zan'></image>
             <text class='num'>{{list.praise}}</text>
@@ -29,11 +36,6 @@
         </view>
       </view>
     </view>
-     <view wx:if="{{status==2}}" bindtap='goMy'>
-      <image src='../../imgs/goMy.png' class='gomy'></image>
-    </view>
-  </view>
-  <view class='details'>
     <view class='tit'>{{list.title}}</view>
     <view class='dis aas'>
       <view>
