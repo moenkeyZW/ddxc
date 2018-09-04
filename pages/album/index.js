@@ -18,11 +18,6 @@ Page({
         status: options.status
       })
     }
-    if (options.openid) {
-      this.setData({
-        openid: options.openid
-      })
-    }
   },
   onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -45,15 +40,10 @@ Page({
       })
     }
     var status = that.data.status;
-    if (status == 2) {
-      var openid = that.data.openid
-    } else {
-      var openid = wx.getStorageSync('openid')
-    }
     wx.request({
       url: app.globalData.base_url + '/see_dynamic',
       data: {
-        openid: openid,
+        openid: wx.getStorageSync('openid'),
         status: status,
       },
       success: function(res) {
@@ -67,32 +57,11 @@ Page({
             trend_list: res.data.list,
           })
         }
-        if (res.data.status === 2) {
-          that.setData({
-            self_list: res.data.self_list,
-          })
-        }
+
       }
     })
   },
-  goMy: function() {
-    wx.reLaunch({
-      url: '/pages/index/index?status=1',
-    })
-  },
-  goYj: function() {
-    var that = this;
-    var status = that.data.status;
-    var openid = that.data.openid
-    wx.redirectTo({
-      url: '/pages/index/index?status=' + status + '&openid=' + openid,
-    })
-  },
-  goAlbum: function() {
-    wx.redirectTo({
-      url: '/pages/index/index',
-    })
-  },
+
   getUserInfo: function(e) {
     app.onLogin();
     var that = this

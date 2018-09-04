@@ -3,9 +3,6 @@
     <image src='../../imgs/bg.png' class='bg'></image>
     <open-data type="userAvatarUrl" class='av'></open-data>
     <open-data type="userNickName" class='nickname'></open-data>
-    <view wx:if="{{status==2}}" bindtap='goMy'>
-      <image src='../../imgs/goMy.png' class='gomy'></image>
-    </view>
   </view>
   <view wx:if="{{status===0}}">
     <view>
@@ -33,51 +30,8 @@
         </view>
       </view>
     </view>
-    <view class='kong'></view>
   </view>
-  <view wx:if="{{status===2}}" style='width:100%;'>
-    <view class='tab'>
-      <view class='comms' bindtap='goYj'>影集</view>
-      <view class='zx'></view>
-      <view class='comms'>
-        <text class='dt'>动态</text>
-      </view>
-    </view>
-    <view class='trend_list shadow' wx:for="{{self_list}}" wx:key="{{index}}" data-index="{{index}}">
-      <view>
-        <image src='{{item.headimgurl}}' class='ava'></image>
-      </view>
-      <view class='appraise'>
-        <view class='rw'>
-          <view class='name'>{{item.nickname}}
-            <text class='time pj'>{{item.type}}</text>
-          </view>
-          <view class='time sj'>{{item.create_time}}</view>
-        </view>
-        <view class='content'>{{item.content}}</view>
-        <view class='detail' bindtap='goDetail' data-id="{{item.album_id}}">
-          <view>
-            <image src='https://www.qlgbp.cn/Public{{item.cover}}' mode='aspectFill' class='fm'></image>
-          </view>
-          <view class='title'>{{item.title}}</view>
-        </view>
-      </view>
-    </view>
-    <view class='kong'></view>
-  </view>
-  <view class='tarbar' hidden='{{status==2}}'>
-    <view class='ic lf' bindtap='goAlbum'>
-      <image src='../../imgs/album.png' class='icon'></image>
-      <view class='icon_text'>影集</view>
-    </view>
-    <view>
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='make'>
-        <image src='../../imgs/icon_make.png' class='jia'></image>
-      </button>
-    </view>
-    <view class='ic rg'>
-      <image src='../../imgs/trends_selected.png' class='icon'></image>
-      <view class='icon_text trend'>动态</view>
-    </view>
-  </view>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" plain='true' class='make'>
+    <image src='../../imgs/icon_make.png' class='jia'></image>
+  </button>
 </view>

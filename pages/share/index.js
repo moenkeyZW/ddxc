@@ -1,31 +1,35 @@
 // pages/share/index.js
-const app=getApp();
+const app = getApp();
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    album_id:'',
+    album_id: '',
+    coverImg: '',
     cover:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(options)
-    this.setData({
-      album_id:options.album_id
+  onLoad: function(options) {
+    var that=this;
+    const album_id = options.album_id;
+    that.setData({
+      album_id: album_id
     })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    var that=this;
-    var album_id=that.data.album_id;
+  onShow: function() {
+    var that = this;
+    var album_id = that.data.album_id;
     wx.request({
       url: app.globalData.base_url + '/share',
       data: {
@@ -36,29 +40,32 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-       console.log(res)
-       that.setData({
-        //  title:res.data.data.title,
-         cover:res.data.data.cover,
-       })
+        console.log(res)
+        that.setData({
+          coverImg: res.data.data.coverimg,
+          cover:res.data.data.cover,
+        })
       }
     })
-  },
+  }, 
+
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function(res) {
     var that = this;
     // var title = that.data.title;
-    var cover=that.data.cover;
+    var coverImg = that.data.coverImg;
+    var cover = that.data.cover;
+    console.log(coverImg)
     var id = that.data.album_id;
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
     return {
       title: "我发布了一个精美相册，快来打开看看吧！",
-      imageUrl:cover,
+      imageUrl: coverImg,
       path: '/pages/detail/index?status=2&&id=' + id,
     }
   }

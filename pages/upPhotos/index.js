@@ -22,7 +22,10 @@ Page({
       music_name: '',
     },
     grade: 0,
-    album_id:0,
+    album_id: 0,
+    // composeImg: false,
+    canvasWidth: '',
+    canvasHeight: '',
   },
 
   /**
@@ -85,7 +88,7 @@ Page({
       }
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.onShow(); // 刷新页面
     wx.hideNavigationBarLoading() //完成停止加载
@@ -117,9 +120,9 @@ Page({
         that.setData({
           muban_list: res.data.rm_moban,
           currently: res.data.list,
-        
+
         })
-        if(res.data.list.moban_id!=0){
+        if (res.data.list.moban_id != 0) {
           that.setData({
             clickId: res.data.list.moban_id
           })
@@ -161,7 +164,7 @@ Page({
     })
   },
   previewMuban: function(e) {
-    var that=this;
+    var that = this;
     var moban_id = e.currentTarget.dataset.id;
     var album_id = that.data.album_id;
     wx.navigateTo({
@@ -185,13 +188,15 @@ Page({
   },
   choose: function() {
     var that = this
+    var imgUrl = '';
     wx.chooseImage({
       count: 9,
       success: function(res) {
         that.setData({
           isHaveImg: false,
-          img_arr: that.data.img_arr.concat(res.tempFilePaths)
+          img_arr: that.data.img_arr.concat(res.tempFilePaths),
         })
+
         var tempFilePaths = res.tempFilePaths;
         for (var i = 0; i < tempFilePaths.length; i++) {
           wx.uploadFile({
@@ -252,30 +257,35 @@ Page({
   },
 
   // 提交制作
-  uploadImg: function() {
+  uploadImg: function(e) {
     var that = this;
     var sort = that.data.sort;
     var img_arr = that.data.img_arr;
     var upImg = that.data.upImg;
+    var moban_id = that.data.currently.moban_id;
+    var music_id = that.data.currently.music_id;
     if (img_arr == "") {
       wx.showModal({
         title: '提示',
         content: '上传照片后才能制作影集',
-        showCancel:false,
-        success: function (res) {
-          
+        showCancel: false,
+        success: function(res) {
+          if (res.confirm) {
+            that.setData({
+              curIndex: 0
+            })
+          }
         }
       })
       return
     }
-    var moban_id = that.data.currently.moban_id;
-    if (moban_id==0){
+    if (moban_id == 0) {
       wx.showModal({
         title: '提示',
         content: '选择模板和音乐后才能制作影集',
         showCancel: false,
-        confirmText:'请选择',
-        success: function (res) {
+        confirmText: '请选择',
+        success: function(res) {
           if (res.confirm) {
             that.setData({
               curIndex: 1
@@ -293,10 +303,7 @@ Page({
         }
       }
     }
-
     var imgUrl = that.data.remakeImg.concat(upImg).join(',');
-    var moban_id = that.data.currently.moban_id;
-    var music_id = that.data.currently.music_id;
     wx.request({
       url: app.globalData.base_url + '/make_album',
       data: {
@@ -309,7 +316,8 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: function(res) {
+      success: function (res) {
+        console.log(res)
         if (res.data.res) {
           wx.redirectTo({
             url: '/pages/publish/index',
@@ -317,6 +325,7 @@ Page({
         }
       }
     })
+
   },
 
 })

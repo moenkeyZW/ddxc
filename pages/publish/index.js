@@ -15,6 +15,9 @@ Page({
     left: -2,
     id: '',
     nickname: '',
+    compose: '',
+    canvasWidth:'',
+    canvasHeight:'',
   },
 
   /**
@@ -50,6 +53,78 @@ Page({
           id: res.data.list.id,
           cover: res.data.list.cover,
           nickname: res.data.list.nickname,
+        })
+        var id = res.data.list.id;
+        var cover = res.data.list.cover;
+        wx.downloadFile({
+          url: cover,
+          success: function(res) {
+            var src = res.tempFilePath
+            wx.getImageInfo({
+              src: src,
+              success: function(res) {
+                if (res.width > 1000) {
+                  var canvasWidth = 1000;
+                } else {
+                  var canvasWidth = res.width;
+                }
+                if (res.height > 1000) {
+                  var canvasHeight = 800
+                } else {
+                  var canvasHeight = res.height;
+                }
+                that.setData({
+                  canvasWidth: canvasWidth,
+                  canvasHeight: canvasHeight
+                })
+                const ctx = wx.createCanvasContext('shareCanvas')
+                // 底图
+                ctx.drawImage(src, 0, 0, canvasWidth / 2, canvasHeight / 2)
+                const qrImgSize = 52
+                ctx.drawImage('../../imgs/play.png', canvasWidth / 4 - 26, canvasHeight / 4 - 26, qrImgSize, qrImgSize)
+                // 播放按钮
+                ctx.stroke()
+                ctx.draw()
+                setTimeout(function() {
+                  wx.canvasToTempFilePath({
+                    canvasId: 'shareCanvas',
+                    success: function(res) {
+                      wx.uploadFile({
+                        url: app.globalData.base_url + '/upload_img',
+                        filePath: res.tempFilePath,
+                        name: 'file',
+                        header: {
+                          "Content-Type": "multipart/form-data",
+                          'accept': 'application/json',
+                        },
+                        success: function(res) {
+                          var coverImg = '/UploadWechat/' + res.data.split(',')[1];
+                          console.log(coverImg)
+                          wx.request({
+                            url: app.globalData.base_url + '/hecheng',
+                            data: {
+                              id: id,
+                              coverimg: coverImg,
+                            },
+                            method: 'GET',
+                            header: {
+                              'content-type': 'application/json' // 默认值
+                            },
+                            success: function(res) {
+                              that.setData({
+                                compose: true,
+                              })
+                            }
+                          })
+                        }
+                      })
+                    }
+                  })
+                }, 500)
+
+              }
+            })
+          }
         })
       }
     })
@@ -98,8 +173,8 @@ Page({
       // }
       if (title !== "") {
         title = e.detail.value.title
-      }else{
-        title = that.data.nickname +"的精美相册"
+      } else {
+        title = that.data.nickname + "的精美相册"
       }
       var depict = e.detail.value.message;
       wx.request({
@@ -110,14 +185,17 @@ Page({
           depict: depict,
         },
         success: function(res) {
-          wx.redirectTo({
-            url: '/pages/index/index',
-          })
           wx.showToast({
             title: '发布成功',
             icon: 'success',
-            duration: 2000
+            duration: 4000,
+            success: function(res) {
+              wx.switchTab({
+                url: '/pages/index/index',
+              })
+            }
           })
+
         }
       })
     } else {

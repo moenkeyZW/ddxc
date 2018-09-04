@@ -1,0 +1,8 @@
+/* pages/other/index.wxss */
+@import '../album/index.wxss';
+@import '../index/index.wxss';
+
+.choosed{
+  color: #FA7180;
+
+}

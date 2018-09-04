@@ -26,5 +26,5 @@
       <button form-type="submit" class='fb' >发布</button>
     </view>
   </form>
-
 </view>
+  <canvas canvas-id="shareCanvas" hidden='{{compose}}' style="width:{{canvasWidth}}rpx;height:{{canvasHeight}}rpx;z-index:-2"></canvas>

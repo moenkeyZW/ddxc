@@ -15,6 +15,7 @@ Page({
     openid: '',
     equ:'',
     status:'',
+    coverImg:'',
   },
 
   /**
@@ -31,7 +32,6 @@ Page({
         status:options.status
       })
     }
-    console.log(that.data.status)
   },
   onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -105,7 +105,7 @@ Page({
     }
   },
   goMy: function () {
-    wx.reLaunch({
+    wx.switchTab({
       url: '/pages/index/index?status=1',
     })
   },
@@ -116,13 +116,13 @@ Page({
     if (wx.getStorageSync('openid')) {
       if (wx.getStorageSync('openid') === openid) {
         var status=1;
-        wx.redirectTo({
+        wx.switchTab({
           url: '/pages/index/index?status=' + status + '&openid=' + openid,
         })
       } else {
         var status = 2;
         wx.navigateTo({
-          url: '/pages/index/index?status=' + status + '&openid=' + openid
+          url: '/pages/other/index?status=' + status + '&openid=' + openid
         })
       }
     }else{
@@ -232,14 +232,14 @@ Page({
    */
   onShareAppMessage: function(res) {
     var that = this;
-    var cover=that.data.list.cover;
+    var coverImg=that.data.list.coverimg;
     var id = that.data.id;
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
     return {
       title: '我发布了一个精美相册，快来打开看看吧！',
-      imageUrl: cover,
+      imageUrl: coverImg,
       path: '/pages/detail/index?status=2&&id=' + id,
     }
   }

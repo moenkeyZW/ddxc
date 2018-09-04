@@ -3,17 +3,8 @@
 <view class="container">
   <view class='header'>
     <image src='../../imgs/bg.png' class='bg'></image>
-    <!-- <view>
-      <image src='{{userInfo.headimgurl}}' class='av'></image>
-    </view>
-    <view>
-      <text class='nickname'>{{userInfo.nickname}}</text>
-    </view> -->
     <open-data type="userAvatarUrl" class='av'></open-data>
     <open-data type="userNickName" class='nickname'></open-data>
-    <view wx:if="{{status==2}}" bindtap='goMy'>
-      <image src='../../imgs/goMy.png' class='gomy'></image>
-    </view>
   </view>
   <view wx:if="{{status===0}}">
     <view>
@@ -28,7 +19,7 @@
       <view class='albumFm'>
         <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' mode='aspectFill' bindtap='goDetail' data-id="{{item.id}}"></image>
         <view class='bts'>
-          <image src='../../imgs/more.png' class='more' bindtap='moreOperate' data-index='{{index}}'></image>
+          <image src='../../imgs/more.png' class='more' bindtap='moreOperate' data-index='{{index}}' lazy-load='true'></image>
         </view>
         <view class="dialog " hidden='{{item.bool}}'>
           <view class='dikuang'>
@@ -42,7 +33,7 @@
               <text class='zt'>删除</text>
             </view>
             <view class='fx'>
-              <button open-type='share' class='fxBt' plain='true' data-id='{{item.id}}' data-cover="https://www.qlgbp.cn/Public{{item.cover}}" data-title="{{item.title}}" data-index='{{index}}'>
+              <button open-type='share' class='fxBt' plain='true' data-id='{{item.id}}' data-coverImg="https://www.qlgbp.cn/Public{{item.coverimg}}" data-title="{{item.title}}" data-index='{{index}}'>
                 <image src='../../imgs/share.png' class='smtb'></image>
                 <text class='zt'>分享</text>
               </button>
@@ -55,40 +46,10 @@
       </view>
       <view class='time mf'>{{item.timeline}}</view>
     </view>
-    <view class='kong'></view>
   </view>
-  <view wx:if="{{status===2}}" style='width:100%'>
-    <view class='tab'>
-      <view class='comms'>
-        <text class='yj'>影集</text>
-      </view>
-      <view class='zx'></view>
-      <view class='comms' bindtap='goDt'>动态</view>
-    </view>
-    <view class='album_list shadow' wx:for="{{other_list}}" wx:key="{{index}}" data-index="{{index}}">
-      <view class='albumFm'>
-        <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' mode='aspectFill' bindtap='goDetail' data-id="{{item.id}}"></image>
-        <view class='bt'>
-          <view class='js'>{{item.title}}</view>
-        </view>
-      </view>
-      <view class='time mf'>{{item.timeline}}</view>
-    </view>
-    <view class='kong'></view>
-  </view>
-  <view class='tarbar' hidden='{{status==2}}'>
-    <view class='ic lf'>
-      <image src='../../imgs/album_selected.png' class='icon'></image>
-      <view class='icon_text trend'>影集</view>
-    </view>
-    <view>
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='make'>
-        <image src='../../imgs/icon_make.png' class='jia'></image>
-      </button>
-    </view>
-    <view class='ic rg' bindtap='goTrend'>
-      <image src='../../imgs/trends.png' class='icon'></image>
-      <view class='icon_text '>动态</view>
-    </view>
-  </view>
+
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" plain='true' class='make'>
+    <image src='../../imgs/icon_make.png' class='jia'></image>
+  </button>
+
 </view>

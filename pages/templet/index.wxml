@@ -24,7 +24,7 @@
       <view class='tou' bindtap='previewMuban' data-id='{{item.id}}' >
         <image src='https://www.qlgbp.cn/Public{{item.cover}}'  class='mbfm'></image>
         <view class='jz'>
-          <image src='../../imgs/play.png' class='play'></image>
+          <image src='../../imgs/play.png' class='play' lazy-load='true'></image>
         </view>
       </view>
       <block wx:if="{{index==clickId || selectedId==item.id  }}">

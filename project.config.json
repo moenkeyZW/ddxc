@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -88,6 +88,11 @@
 					"name": "修改图片",
 					"pathName": "pages/revisePhoto/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "他人进入首页",
+					"pathName": "pages/other/index"
 				}
 			]
 		}

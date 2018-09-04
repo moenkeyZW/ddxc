@@ -11,13 +11,32 @@
     "pages/publish/index",
     "pages/webView/index",
     "pages/share/index",
-    "pages/revisePhoto/index"
+    "pages/revisePhoto/index",
+    "pages/other/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "点点相册",
+    "navigationBarTitleText": "忆此时+",
     "navigationBarTextStyle": "#fff",
     "backgroundColor": "#FCFAFA"
+  },
+  "tabBar": {
+    "selectedColor": "#FA7180",
+    "color": "#b3b3b3",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./imgs/album.png",
+        "selectedIconPath": "./imgs/album_selected.png",
+        "text": "影集"
+      },
+      {
+        "pagePath": "pages/album/index",
+        "iconPath": "./imgs/trends.png",
+        "selectedIconPath": "./imgs/trends_selected.png",
+        "text": "动态"
+      }
+    ]
   }
 }

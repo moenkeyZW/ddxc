@@ -1,0 +1,59 @@
+<!--pages/other/index.wxml-->
+<view class="container">
+  <view class='header'>
+    <image src='../../imgs/bg.png' class='bg'></image>
+    <view>
+      <image src='{{userInfo.headimgurl}}' class='av'></image>
+    </view>
+    <view>
+      <text class='nickname'>{{userInfo.nickname}}</text>
+    </view>
+    <view bindtap='goMy'>
+      <image src='../../imgs/goMy.png' class='gomy'></image>
+    </view>
+  </view>
+  <view class='tab'>
+    <view class='comms '>
+      <text class='{{curIndex === 0? "choosed dt": ""}}' data-index='{{0}}' bindtap='tabHandle'>影集</text>
+    </view>
+    <view class='zx'></view>
+    <view class='comms'>
+      <text class='{{curIndex === 1? "choosed dt": ""}}' data-index='{{1}}' bindtap='tabHandle'>动态</text>
+    </view>
+  </view>
+  <view hidden="{{curIndex !== 0}}" style='width:100%'>
+    <view class='album_list shadow' wx:for="{{other_list}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='albumFm'>
+        <image src='https://www.qlgbp.cn/Public{{item.cover}}' class='bigImg' mode='aspectFill' bindtap='goDetail' data-id="{{item.id}}"></image>
+        <view class='bt'>
+          <view class='js'>{{item.title}}</view>
+        </view>
+      </view>
+      <view class='time mf'>{{item.timeline}}</view>
+    </view>
+    <view class='kong'></view>
+  </view>
+  <view hidden="{{curIndex !== 1}}" style='width:100%;'>
+    <view class='trend_list shadow' wx:for="{{self_list}}" wx:key="{{index}}" data-index="{{index}}">
+      <view>
+        <image src='{{item.headimgurl}}' class='ava'></image>
+      </view>
+      <view class='appraise'>
+        <view class='rw'>
+          <view class='name'>{{item.nickname}}
+            <text class='time pj'>{{item.type}}</text>
+          </view>
+          <view class='time sj'>{{item.create_time}}</view>
+        </view>
+        <view class='content'>{{item.content}}</view>
+        <view class='detail' bindtap='goDetail' data-id="{{item.album_id}}">
+          <view>
+            <image src='https://www.qlgbp.cn/Public{{item.cover}}' mode='aspectFill' class='fm'></image>
+          </view>
+          <view class='title'>{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='kong'></view>
+  </view>
+</view>

@@ -10,8 +10,8 @@ Page({
     status: 0,
     album_list: '',
     other_list: '',
-    openid: '',
     userInfo: '',
+    coverImg:'',
   },
   onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -28,11 +28,6 @@ Page({
         status: options.status
       })
     }
-    if (options.openid) {
-      this.setData({
-        openid: options.openid
-      })
-    }
   },
 
   /**
@@ -41,15 +36,10 @@ Page({
   onShow: function() {
     var that = this;
     var status = that.data.status;
-    if (status == 2) {
-      var openid = that.data.openid
-    } else {
-      var openid = wx.getStorageSync('openid')
-    }
     wx.request({
       url: app.globalData.base_url + '/see_album',
       data: {
-        openid: openid,
+        openid: wx.getStorageSync('openid'),
         status: status,
       },
       success: function(res) {
@@ -63,30 +53,8 @@ Page({
             album_list: res.data.list,
           })
         }
-        if (res.data.status === 2) {
-          that.setData({
-            other_list: res.data.other_list,
-          })
-        }
+
       }
-    })
-  },
-  goMy: function() {
-    wx.reLaunch({
-      url: '/pages/index/index?status=1',
-    })
-  },
-  goDt: function() {
-    var that = this;
-    var status = that.data.status;
-    var openid = that.data.openid
-    wx.redirectTo({
-      url: '/pages/album/index?status=' + status + '&openid=' + openid,
-    })
-  },
-  goTrend: function() {
-    wx.redirectTo({
-      url: '/pages/album/index',
     })
   },
   getUserInfo: function(e) {
@@ -100,12 +68,14 @@ Page({
   },
   // 重制
   goUpPhoto: function(e) {
+    console.log(e)
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/upPhotos/index?id=' + id,
     })
   },
   goDetail: function(e) {
+    var that=this;
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/detail/index?id=' + id,
@@ -152,10 +122,10 @@ Page({
     })
   },
   onShareAppMessage: function(res) {
-    var that = this;
     console.log(res)
+    var that = this;
     var id = res.target.dataset.id;
-    var cover = res.target.dataset.cover;
+    var coverImg = res.target.dataset.coverimg;
     var i = res.target.dataset.index;
     var list = that.data.album_list;
     list[i].bool = !list[i].bool;
@@ -168,7 +138,7 @@ Page({
     }
     return {
       title: '我发布了一个精美相册，快来打开看看吧！',
-      imageUrl: cover,
+      imageUrl: coverImg,
       path: '/pages/detail/index?status=2&&id=' + id,
     }
   }

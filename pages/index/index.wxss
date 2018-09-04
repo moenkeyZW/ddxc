@@ -25,11 +25,6 @@
   border-bottom-right-radius: 2rpx;
 }
 
-.dt{
-  border:none;
-  color:#333;
-}
-
 .mf {
   margin: 2rpx 0 0 51rpx;
 }

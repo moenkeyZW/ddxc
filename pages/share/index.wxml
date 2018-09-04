@@ -9,3 +9,4 @@
     <button open-type='share' class='shareBtn'>分享</button>
   </view>
 </view>
+  <canvas canvas-id="shareCanvas"  style="width:{{canvasWidth}}rpx;height:{{canvasHeight}}rpx;position: absolute;top:-300px;"></canvas>
