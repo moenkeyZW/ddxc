@@ -122,7 +122,6 @@ Page({
     })
   },
   onShareAppMessage: function(res) {
-    console.log(res)
     var that = this;
     var id = res.target.dataset.id;
     var coverImg = res.target.dataset.coverimg;

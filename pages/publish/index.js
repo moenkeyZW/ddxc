@@ -188,7 +188,7 @@ Page({
           wx.showToast({
             title: '发布成功',
             icon: 'success',
-            duration: 4000,
+            duration: 30000,
             success: function(res) {
               wx.switchTab({
                 url: '/pages/index/index',
