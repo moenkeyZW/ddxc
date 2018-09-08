@@ -124,7 +124,8 @@ Page({
   onShareAppMessage: function(res) {
     var that = this;
     var id = res.target.dataset.id;
-    var coverImg = res.target.dataset.coverimg;
+    var cover = res.target.dataset.cover;
+    var title=res.target.dataset.title;
     var i = res.target.dataset.index;
     var list = that.data.album_list;
     list[i].bool = !list[i].bool;
@@ -136,8 +137,8 @@ Page({
       // 来自页面内转发按钮
     }
     return {
-      title: '我发布了一个精美相册，快来打开看看吧！',
-      imageUrl: coverImg,
+      title: title,
+      imageUrl: cover,
       path: '/pages/detail/index?status=2&&id=' + id,
     }
   }

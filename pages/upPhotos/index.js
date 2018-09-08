@@ -8,6 +8,9 @@ Page({
   data: {
     curIndex: 0,
     sort: [],
+    again: [],
+    third: [],
+    fouth: [],
     isHaveImg: true,
     img_arr: [],
     remakeImg: [],
@@ -26,6 +29,7 @@ Page({
     // composeImg: false,
     canvasWidth: '',
     canvasHeight: '',
+    j: 0,
   },
 
   /**
@@ -186,8 +190,13 @@ Page({
       'currently.music_name': music_name
     })
   },
-  choose: function() {
+  choose: function(e) {
     var that = this
+    var j = that.data.j;
+    var j = j + 1;
+    that.setData({
+      j: j
+    })
     var imgUrl = '';
     wx.chooseImage({
       count: 9,
@@ -196,7 +205,6 @@ Page({
           isHaveImg: false,
           img_arr: that.data.img_arr.concat(res.tempFilePaths),
         })
-
         var tempFilePaths = res.tempFilePaths;
         for (var i = 0; i < tempFilePaths.length; i++) {
           wx.uploadFile({
@@ -211,12 +219,22 @@ Page({
               'num': i
             },
             success: function(res) {
-              that.data.sort = res.data.split(',').concat(that.data.sort);
+              if (that.data.j == 1) {
+                that.data.sort = res.data.split(',').concat(that.data.sort);
+              } else if (that.data.j == 2) {
+                that.data.again = res.data.split(',').concat(that.data.again);
+              } else if (that.data.j == 3) {
+                that.data.third = res.data.split(',').concat(that.data.third);
+              } else {
+                that.data.fouth = res.data.split(',').concat(that.data.fouth);
+              }
+
               if (that.data.sort.length >= 72) {
                 that.data.sort = that.data.sort.slice(0, 72)
               }
               that.setData({
-                sort: that.data.sort
+                sort: that.data.sort,
+                again: that.data.again
               })
             }
           })
@@ -228,6 +246,9 @@ Page({
   deleteImg: function(e) {
     var that = this;
     var sort = that.data.sort;
+    var again = that.data.again
+    var third = that.data.third
+    var fouth = that.data.fouth
     var img_arr = that.data.img_arr;
     var upImg = that.data.upImg;
     var remakeImg = that.data.remakeImg;
@@ -241,6 +262,27 @@ Page({
         sort.splice(j, 2);
       }
     }
+    if (again.length > 0) {
+      for (var j = 0; j < again.length; j++) {
+        if (again[j] == index) {
+          again.splice(j, 2);
+        }
+      }
+    }
+    if (third.length > 0) {
+      for (var j = 0; j < third.length; j++) {
+        if (third[j] == index) {
+          third.splice(j, 2);
+        }
+      }
+    }
+    if (fouth.length > 0) {
+      for (var j = 0; j < fouth.length; j++) {
+        if (fouth[j] == index) {
+          fouth.splice(j, 2);
+        }
+      }
+    }
 
     img_arr.splice(index, 1);
     remakeImg.splice(index, 1);
@@ -251,6 +293,9 @@ Page({
     }
     that.setData({
       sort: sort,
+      again: again,
+      third: third,
+      fouth: fouth,
       img_arr: img_arr,
       remakeImg: remakeImg
     });
@@ -260,6 +305,9 @@ Page({
   uploadImg: function(e) {
     var that = this;
     var sort = that.data.sort;
+    var again = that.data.again
+    var third = that.data.third
+    var fouth = that.data.fouth
     var img_arr = that.data.img_arr;
     var upImg = that.data.upImg;
     var moban_id = that.data.currently.moban_id;
@@ -295,11 +343,37 @@ Page({
       })
       return
     }
-
     for (var j = 0; j < sort.length; j++) {
       for (var i = 0; i < sort.length; i++) {
         if (sort[i] == j) {
           upImg.push('/UploadWechat/' + sort[i + 1])
+        }
+      }
+    }
+    if(again.length>0){
+      for (var j = 0; j < again.length; j++) {
+        for (var i = 0; i < again.length; i++) {
+          if (again[i] == j) {
+            upImg.push('/UploadWechat/' + again[i + 1])
+          }
+        }
+      }
+    }
+    if (third.length > 0) {
+      for (var j = 0; j < third.length; j++) {
+        for (var i = 0; i < third.length; i++) {
+          if (third[i] == j) {
+            upImg.push('/UploadWechat/' + third[i + 1])
+          }
+        }
+      }
+    }
+    if (fouth.length > 0) {
+      for (var j = 0; j < fouth.length; j++) {
+        for (var i = 0; i < fouth.length; i++) {
+          if (fouth[i] == j) {
+            upImg.push('/UploadWechat/' + fouth[i + 1])
+          }
         }
       }
     }
@@ -316,7 +390,7 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         if (res.data.res) {
           wx.redirectTo({

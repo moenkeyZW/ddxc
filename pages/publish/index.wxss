@@ -3,8 +3,8 @@
 
 .describe {
   width: calc(100% - 60rpx);
-  margin-top: 30rpx;
-  height: 386rpx;
+  margin-top: 20rpx;
+  height: 626rpx;
   background: #fff;
   border-radius: 10rpx;
   box-shadow:0px 0px 6px rgba(51,29,25,0.08);
@@ -19,7 +19,7 @@
   font-size:36rpx;
   line-height: 88rpx;
   text-align: center;
-  margin-top:170rpx;
+  margin-top:60rpx;
   box-shadow:0rpx 6rpx 20rpx 6rpx rgba(250,113,128,0.3);
 }
 
@@ -33,27 +33,33 @@
   padding-bottom:10rpx;
 }
 .detail{
-  margin:19rpx 0 0 30rpx;
+  margin:16rpx 0 0 30rpx;
   position: relative;
 }
 textarea{
   width:570rpx;
-  height:188rpx;
-  background:#FCFCFC;
-  border:1rpx solid #EBEBEB;
+  height:258rpx;
+  background:#FFF;
+  border:1rpx solid #b3b3b3;
   border-radius: 10rpx;
   margin-top:14rpx;
-  padding:12rpx 30rpx 0 30rpx;
+  padding:16rpx 30rpx 0 30rpx;
   color:#333;
   font-size:28rpx;
 }
+.detail:first-child>textarea{
+  height:140rpx;
+  font-weight: bold;
+  font-size:34rpx;
+}
+
 .pub{
   font-size:28rpx;
   color:#B3B3B3;
 }
 .pubs{
-  font-size:28rpx;
-  color:#333;
+  font-size:34rpx;
+  color:#B3B3B3;
 }
 .title{
   color:#333;

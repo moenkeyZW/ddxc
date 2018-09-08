@@ -1,30 +1,35 @@
 <!--pages/publish/index.wxml-->
 <view class='container'>
-  <view class='fmyj' >
+  <view class='fmyj'>
     <image src='{{cover}}' mode='aspectFill' class='fmyjt'></image>
     <view class='bofang' wx:if="{{!showDis}}" bindtap='pubPrev'>
-      <image src='../../imgs/play_sm.png' class='play' ></image>
+      <image src='../../imgs/play_sm.png' class='play'></image>
     </view>
     <view class='progress' wx:if="{{showDis}}">
-      <progress activeColor='#FA7180'backgroundColor='#fff' active-mode='forwards'  percent="{{percent}}" style='border-radius:100rpx;overflow:hidden'/>
+      <progress activeColor='#FA7180' backgroundColor='#fff' active-mode='forwards' percent="{{percent}}" style='border-radius:100rpx;overflow:hidden' />
       <view class='round' style='left:{{left}}%'></view>
       <view>正在制作影集</view>
     </view>
   </view>
 
   <form class='describe' bindsubmit="publish">
-    <view class='wrapper'>
+    <view class='detail'>
+      <view class='title'>标题</view>
+      <textarea placeholder="{{nickname}}的精美相册" value='{{title}}' bindinput="inputTitle" maxlength='30' placeholder-class='pubs' name="title"></textarea>
+      <view class='figure'>{{tit_length}}/30</view>
+    </view>
+    <!-- <view class='wrapper'>
       <label class='title'>标题</label>
       <input placeholder='{{nickname}}的精美相册' placeholder-class='pub' value='{{title}}' class='pubs' name='title' bindconfirm='inputTitle' />
-    </view>
+    </view> -->
     <view class='detail'>
       <view class='title'>描述</view>
       <textarea placeholder="输入影集故事（选填）" value='{{userInput}}' bindinput="bindText" maxlength='88' placeholder-class='pub' name="message"></textarea>
       <view class='figure'>{{t_length}}/88</view>
     </view>
     <view>
-      <button form-type="submit" class='fb' >发布</button>
+      <button form-type="submit" class='fb'>发布</button>
     </view>
   </form>
 </view>
-  <canvas canvas-id="shareCanvas" hidden='{{compose}}' style="width:{{canvasWidth}}rpx;height:{{canvasHeight}}rpx;z-index:-2"></canvas>
+<!-- <canvas canvas-id="shareCanvas" hidden='{{compose}}' style="width:{{canvasWidth}}rpx;height:{{canvasHeight}}rpx;z-index:-2"></canvas> -->

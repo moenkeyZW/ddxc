@@ -33,7 +33,7 @@
               <text class='zt'>删除</text>
             </view>
             <view class='fx'>
-              <button open-type='share' class='fxBt' plain='true' data-id='{{item.id}}' data-coverImg="https://www.qlgbp.cn/Public{{item.coverimg}}" data-title="{{item.title}}" data-index='{{index}}'>
+              <button open-type='share' class='fxBt' plain='true' data-id='{{item.id}}' data-cover="https://www.qlgbp.cn/Public{{item.cover}}" data-title="{{item.title}}" data-index='{{index}}'>
                 <image src='../../imgs/share.png' class='smtb'></image>
                 <text class='zt'>分享</text>
               </button>
